@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/nav_top_bar"
+      android:layout_width="match_parent"
+      android:layout_height="?android:attr/actionBarSize"
+      android:elevation="2dp"
+      app:theme="@style/RxPicker.ToolbarTheme"
+      >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:drawablePadding="8dp"
+        android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="全部相册"
+        />
+  </android.support.v7.widget.Toolbar>
+
+
+  <RelativeLayout
+      android:id="@+id/rl_bottom"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_alignParentBottom="true"
+      android:background="@color/rxpicker_colorPrimaryDark"
+      >
+    <ImageView
+        android:id="@+id/iv_select_preview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_eye_white"
+        />
+
+    <TextView
+        android:id="@+id/iv_select_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:text="确定"
+        android:textColor="@color/rxpicker_width"
+        />
+  </RelativeLayout>
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@id/rl_bottom"
+      android:layout_below="@id/nav_top_bar"
+      />
+</RelativeLayout>

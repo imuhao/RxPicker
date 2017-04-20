@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="RxPicker.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/rxpicker_colorPrimary</item>
+    <item name="colorPrimaryDark">@color/rxpicker_colorPrimaryDark</item>
+    <item name="colorAccent">@color/rxpicker_colorAccent</item>
+  </style>
+
+  <!-- BoxingActivity Theme-->
+  <style name="RxPicker.AppTheme.NoActionBar" parent="RxPicker.AppTheme">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:fitsSystemWindows">false</item>
+  </style>
+
+
+  <style name="RxPicker.ToolbarTheme" parent="RxPicker.AppTheme.NoActionBar">
+    <item name="titleTextColor">@color/rxpicker_width</item>
+    <item name="android:textColorSecondary">@color/rxpicker_width</item>
+    <item name="android:textColor">@color/rxpicker_width</item>
+    <item name="android:background">@color/rxpicker_colorPrimaryDark</item>
+  </style>
+
+  <style name="RxPicker.PopupAnimation" parent="android:Animation">
+    <item name="android:windowEnterAnimation">@anim/rxpicker_fade_in</item>
+    <item name="android:windowExitAnimation">@anim/rxpicker_fade_out</item>
+  </style>
+
+
+</resources>

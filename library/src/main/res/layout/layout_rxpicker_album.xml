@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    >
+
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/album_recycleview"
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:scrollbars="vertical"
+      />
+
+  <View
+      android:id="@+id/album_shadow"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#23000000"
+      />
+
+</LinearLayout>
