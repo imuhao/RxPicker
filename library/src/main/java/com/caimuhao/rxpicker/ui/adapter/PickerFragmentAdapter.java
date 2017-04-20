@@ -113,6 +113,11 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private void bind(MediaItem mediaItem) {
+      ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+      layoutParams.width = imageWidth;
+      layoutParams.height = imageWidth;
+      imageView.setLayoutParams(layoutParams);
+
       RxPickerManager.getInstance().display(imageView, mediaItem.getPath(), imageWidth, imageWidth);
       cbCheck.setVisibility(config.isSingle() ? View.GONE : View.VISIBLE);
       cbCheck.setChecked(checkImage.contains(mediaItem));

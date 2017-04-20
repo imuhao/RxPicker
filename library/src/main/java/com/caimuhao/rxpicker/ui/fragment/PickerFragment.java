@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.caimuhao.rxpicker.PickerConfig;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
@@ -164,6 +165,10 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
       handleResult(checkImage);
     } else if (ivSelectPreview == v) {
       ArrayList<MediaItem> checkImage = adapter.getCheckImage();
+      if (checkImage.isEmpty()) {
+        Toast.makeText(getActivity(), "请选择一张照片!", Toast.LENGTH_SHORT).show();
+        return;
+      }
       PreviewActivity.start(getActivity(), checkImage);
     }
   }

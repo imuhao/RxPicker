@@ -42,7 +42,7 @@ public class PopWindowManager {
   private void showPopWindow(View v, List<MediaFolder> data, PickerAlbumAdapter albumAdapter) {
     if (mAlbumPopWindow == null) {
       int height = DensityUtil.dp2px(v.getContext(), 300);
-      View windowView = createWindowView(v, data, albumAdapter);
+      View windowView = createWindowView(v, albumAdapter);
       mAlbumPopWindow =
           new PopupWindow(windowView, ViewGroup.LayoutParams.MATCH_PARENT, height, true);
       mAlbumPopWindow.setAnimationStyle(R.style.RxPicker_PopupAnimation);
@@ -52,8 +52,7 @@ public class PopWindowManager {
     mAlbumPopWindow.showAsDropDown(v, 0, 0);
   }
 
-  @NonNull private View createWindowView(View clickView, List<MediaFolder> data,
-      PickerAlbumAdapter albumAdapter) {
+  @NonNull private View createWindowView(View clickView, PickerAlbumAdapter albumAdapter) {
     View view =
         LayoutInflater.from(clickView.getContext()).inflate(R.layout.layout_rxpicker_album, null);
     RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.album_recycleview);

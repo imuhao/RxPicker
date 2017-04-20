@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.bean.MediaItem;
 import com.caimuhao.rxpicker.ui.adapter.VpPreViewAdapter;
@@ -23,7 +22,6 @@ import java.util.List;
 public class PreviewActivity extends AppCompatActivity {
 
   private Toolbar toolbar;
-  private TextView tvTitle;
   private ViewPager vpPreview;
   private VpPreViewAdapter vpAdapter;
 
@@ -31,7 +29,7 @@ public class PreviewActivity extends AppCompatActivity {
 
   public static void start(Context context, ArrayList<MediaItem> data) {
     Intent intent = new Intent(context, PreviewActivity.class);
-    intent.putExtra("data", data);
+    intent.putExtra("preview_list", data);
     context.startActivity(intent);
   }
 
@@ -51,7 +49,7 @@ public class PreviewActivity extends AppCompatActivity {
   }
 
   private void handleData() {
-    data = (List<MediaItem>) getIntent().getSerializableExtra("data");
+    data = (List<MediaItem>) getIntent().getSerializableExtra("preview_list");
   }
 
   private void setupToolbar() {

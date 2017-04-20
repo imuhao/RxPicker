@@ -54,11 +54,6 @@ public class RxPicker {
     return this;
   }
 
-  public RxPicker crop(boolean needCrop) {
-    RxPickerManager.getInstance().needCrop(needCrop);
-    return this;
-  }
-
   /**
    * start picker from activity
    */
@@ -94,7 +89,7 @@ public class RxPicker {
     }).flatMap(new Func1<Boolean, Observable<List<MediaItem>>>() {
       @Override public Observable<List<MediaItem>> call(Boolean aBoolean) {
         Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
-        finalFragment.startActivityForResult(intent, 100);
+        finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
         return finalFragment.getResultSubject();
       }
     }).take(1);

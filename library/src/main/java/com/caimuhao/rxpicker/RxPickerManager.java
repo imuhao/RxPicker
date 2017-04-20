@@ -3,6 +3,7 @@ package com.caimuhao.rxpicker;
 import android.content.Intent;
 import android.widget.ImageView;
 import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
 import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
 import java.util.List;
 
@@ -53,10 +54,6 @@ public class RxPickerManager {
     config.setShowCamera(showCamera);
   }
 
-  public void needCrop(boolean needCrop) {
-    config.setCrop(needCrop);
-  }
-
   public void display(ImageView imageView, String path, int width, int height) {
     if (imageLoader == null) {
       throw new NullPointerException(
@@ -66,7 +63,6 @@ public class RxPickerManager {
   }
 
   public List<MediaItem> getResult(Intent intent) {
-    List<MediaItem> data = (List<MediaItem>) intent.getSerializableExtra("data");
-    return data;
+    return (List<MediaItem>) intent.getSerializableExtra(PickerFragment.MEDIA_RESULT);
   }
 }

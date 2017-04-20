@@ -1,9 +1,12 @@
 package com.caimuhao.rxpicker.ui.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import com.caimuhao.rxpicker.RxPickerManager;
 import com.caimuhao.rxpicker.bean.MediaItem;
 import java.util.List;
 import rx.subjects.BehaviorSubject;
@@ -17,8 +20,9 @@ import rx.subjects.PublishSubject;
 public class ResultHandlerFragment extends Fragment {
 
   PublishSubject<List<MediaItem>> resultSubject = PublishSubject.create();
-
   BehaviorSubject<Boolean> attachSubject = BehaviorSubject.create();
+
+  public static final int REQUEST_CODE = 0x00100;
 
   public static ResultHandlerFragment newInstance() {
     return new ResultHandlerFragment();
@@ -34,20 +38,20 @@ public class ResultHandlerFragment extends Fragment {
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (data != null) {
-      List<MediaItem> list =
-          (List<MediaItem>) data.getSerializableExtra(PickerFragment.MEDIA_RESULT);
-      resultSubject.onNext(list);
+    if (requestCode == REQUEST_CODE && data != null) {
+      resultSubject.onNext(RxPickerManager.getInstance().getResult(data));
     }
   }
 
-  @Override public void onAttach(Context context) {
+  @TargetApi(23) @Override public void onAttach(Context context) {
     super.onAttach(context);
     attachSubject.onNext(true);
   }
 
-  @Override public void onAttach(Activity activity) {
+  @SuppressWarnings("deprecation") @Override public void onAttach(Activity activity) {
     super.onAttach(activity);
-    attachSubject.onNext(true);
+    if (Build.VERSION.SDK_INT < 23) {
+      attachSubject.onNext(true);
+    }
   }
 }

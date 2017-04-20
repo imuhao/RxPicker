@@ -9,7 +9,6 @@ public class PickerConfig {
 
   private Mode mode = Mode.SINGLE_IMG;
   private int maxValue = 9;
-  private boolean crop = true;
   private boolean showCamera = true;
 
   public enum Mode {
@@ -30,14 +29,6 @@ public class PickerConfig {
 
   public void setMaxValue(int maxValue) {
     this.maxValue = maxValue;
-  }
-
-  public boolean isCrop() {
-    return crop;
-  }
-
-  public void setCrop(boolean crop) {
-    this.crop = crop;
   }
 
   public boolean isShowCamera() {
