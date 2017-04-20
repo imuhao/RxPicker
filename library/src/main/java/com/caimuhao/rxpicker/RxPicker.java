@@ -54,6 +54,11 @@ public class RxPicker {
     return this;
   }
 
+  public RxPicker limit(int limit) {
+    RxPickerManager.getInstance().limit(limit);
+    return this;
+  }
+
   /**
    * start picker from activity
    */

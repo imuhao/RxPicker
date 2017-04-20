@@ -3,8 +3,10 @@ package com.caimuhao.rxpicker.ui.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -43,6 +45,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   public static final String MEDIA_RESULT = "media_result";
 
   private TextView title;
+  private Toolbar toolbar;
   private RecyclerView recyclerView;
   private ImageView ivSelectPreview;
   private TextView tvSelectOk;
@@ -73,10 +76,23 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
     tvSelectOk.setOnClickListener(this);
     rlBottom = (RelativeLayout) view.findViewById(R.id.rl_bottom);
     rlBottom.setVisibility(config.isSingle() ? View.GONE : View.VISIBLE);
-
+    initToolbar(view);
     initRecycler();
     initObservable();
     loadData();
+  }
+
+  private void initToolbar(View view) {
+    toolbar = (Toolbar) view.findViewById(R.id.nav_top_bar);
+    final AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
+    appCompatActivity.setSupportActionBar(toolbar);
+    appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        appCompatActivity.onBackPressed();
+      }
+    });
+    appCompatActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
   }
 
   private void initObservable() {
@@ -105,7 +121,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void refreshData(MediaFolder folder) {
-    adapter.setDatas(folder.getImages());
+    adapter.setData(folder.getImages());
     adapter.notifyDataSetChanged();
   }
 
@@ -117,7 +133,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   private void initRecycler() {
     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), DEFALUT_SPANCount);
     recyclerView.setLayoutManager(layoutManager);
-    DividerGridItemDecoration decoration = new DividerGridItemDecoration(getActivity());
+    final DividerGridItemDecoration decoration = new DividerGridItemDecoration(getActivity());
     Drawable divider = decoration.getDivider();
     int imageWidth = DensityUtil.getDeviceWidth(getActivity()) / DEFALUT_SPANCount
         + divider.getIntrinsicWidth() * DEFALUT_SPANCount - 1;
@@ -125,6 +141,12 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
     adapter.setCameraClickListener(new CameraClickListener());
     recyclerView.addItemDecoration(decoration);
     recyclerView.setAdapter(adapter);
+    adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+      @Override public void onItemRangeChanged(int positionStart, int itemCount) {
+        int maxValue = RxPickerManager.getInstance().getConfig().getMaxValue();
+        tvSelectOk.setText("确定 (" + adapter.getCheckImage().size() + "/" + maxValue + ") ");
+      }
+    });
   }
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -148,7 +170,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
 
   @Override public void showAllImage(List<MediaFolder> datas) {
     allFolder = datas;
-    adapter.setDatas(datas.get(0).getImages());
+    adapter.setData(datas.get(0).getImages());
     adapter.notifyDataSetChanged();
     initPopWindow(datas);
   }

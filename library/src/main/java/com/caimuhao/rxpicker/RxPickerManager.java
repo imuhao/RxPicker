@@ -65,4 +65,8 @@ public class RxPickerManager {
   public List<MediaItem> getResult(Intent intent) {
     return (List<MediaItem>) intent.getSerializableExtra(PickerFragment.MEDIA_RESULT);
   }
+
+  public void limit(int limit) {
+    config.setMaxValue(limit);
+  }
 }

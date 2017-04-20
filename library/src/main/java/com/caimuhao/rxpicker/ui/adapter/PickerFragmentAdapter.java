@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 import com.caimuhao.rxpicker.PickerConfig;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
@@ -64,6 +65,12 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         if (config.isSingle()) {
           RxBus.singleton().post(mediaItem);
         } else {
+          int maxValue = config.getMaxValue();
+          if (checkImage.size() == maxValue && !checkImage.contains(mediaItem)) {
+            Toast.makeText(holder.itemView.getContext(), "最多选择" + maxValue + "张图片",
+                Toast.LENGTH_SHORT).show();
+            return;
+          }
           boolean b = checkImage.contains(mediaItem) ? checkImage.remove(mediaItem)
               : checkImage.add(mediaItem);
           notifyItemChanged(holder.getAdapterPosition());
@@ -89,8 +96,8 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
   }
 
-  public void setDatas(List<MediaItem> datas) {
-    this.datas = datas;
+  public void setData(List<MediaItem> data) {
+    this.datas = data;
   }
 
   public void setCameraClickListener(View.OnClickListener cameraClickListener) {

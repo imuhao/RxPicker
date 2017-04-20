@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
       });
     } else if (btnMultiImg == v) {
-
       RxPicker.of()
           .single(false)
           .camera(true)
+          .limit(3)
           .start(this)
           .subscribe(new Action1<List<MediaItem>>() {
             @Override public void call(List<MediaItem> datas) {

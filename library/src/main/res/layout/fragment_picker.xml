@@ -23,7 +23,7 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:paddingLeft="8dp"
+        android:paddingLeft="3dp"
         android:paddingRight="8dp"
         android:text="全部相册"
         />
