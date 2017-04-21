@@ -33,7 +33,7 @@
       android:layout_alignParentRight="true"
       android:layout_centerVertical="true"
       android:layout_marginRight="20dp"
-      android:src="@drawable/ic_camera_white"
+      android:src="@drawable/ic_emoji"
       />
 
 </RelativeLayout>
