@@ -15,17 +15,24 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:drawablePadding="8dp"
-        android:drawableRight="@drawable/abc_spinner_mtrl_am_alpha"
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:paddingLeft="3dp"
-        android:paddingRight="8dp"
+        android:maxWidth="120dp"
+        android:minWidth="50dp"
         android:text="全部相册"
+        />
+    <!--android:drawableRight="@drawable/ic_spinner_mtrl_am_alpha"-->
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:paddingLeft="7dp"
+        android:src="@drawable/ic_spinner_mtrl_am_alpha"
         />
   </android.support.v7.widget.Toolbar>
 
@@ -65,5 +72,8 @@
       android:layout_height="match_parent"
       android:layout_above="@id/rl_bottom"
       android:layout_below="@id/nav_top_bar"
+      android:layout_marginLeft="1dp"
+      android:layout_marginRight="1dp"
+      android:layout_marginTop="1dp"
       />
 </RelativeLayout>

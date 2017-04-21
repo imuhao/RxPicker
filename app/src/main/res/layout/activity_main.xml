@@ -30,7 +30,7 @@
         android:layout_height="30dp"
         android:background="@drawable/rect_frame"
         android:gravity="center"
-        android:text="选择单张图片"
+        android:text="图片单选"
         android:textColor="@color/rxpicker_colorPrimaryDark"
         />
 
@@ -42,10 +42,9 @@
         android:layout_marginLeft="20dp"
         android:background="@drawable/rect_frame"
         android:gravity="center"
-        android:text="选择多张图片"
+        android:text="图片多选"
         android:textColor="@color/rxpicker_colorPrimaryDark"
         />
-
 
   </LinearLayout>
 
@@ -53,6 +52,8 @@
       android:id="@+id/recyclerView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginTop="20dp"
+      android:layout_marginLeft="1dp"
+      android:layout_marginRight="1dp"
+      android:layout_marginTop="10dp"
       />
 </LinearLayout>

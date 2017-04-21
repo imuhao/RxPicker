@@ -6,6 +6,12 @@ import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
+/**
+ * @author Smile
+ * @time 2017/4/19  上午12:39
+ * @desc ${TODD}
+ */
+
 public class RxBus {
 
   private final Subject<Object, Object> bus = new SerializedSubject<>(PublishSubject.create());

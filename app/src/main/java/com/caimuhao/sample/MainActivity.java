@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import com.caimuhao.rxpicker.RxPicker;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
 import java.util.List;
 import rx.functions.Action1;
@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private RecyclerView recyclerView;
   private PickerAdapter adapter;
 
+  /**
+
+
+
+
+   */
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -43,9 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   @Override public void onClick(View v) {
     if (btnSingleImg == v) {
-      RxPicker.of().start(this).subscribe(new Action1<List<MediaItem>>() {
-        @Override public void call(List<MediaItem> datas) {
-          adapter.setData(datas);
+      RxPicker.of().start(this).subscribe(new Action1<List<ImageItem>>() {
+        @Override public void call(List<ImageItem> images) {
+
+          adapter.setData(images);
         }
       });
     } else if (btnMultiImg == v) {
@@ -54,9 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           .camera(true)
           .limit(3)
           .start(this)
-          .subscribe(new Action1<List<MediaItem>>() {
-            @Override public void call(List<MediaItem> datas) {
-              adapter.setData(datas);
+          .subscribe(new Action1<List<ImageItem>>() {
+            @Override public void call(List<ImageItem> images) {
+              // 得到选择的图片
+              adapter.setData(images);
             }
           });
     }

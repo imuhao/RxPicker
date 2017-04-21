@@ -8,14 +8,14 @@ package com.caimuhao.rxpicker.bean;
 public class FolderClickEvent {
 
   private int position;
-  private MediaFolder folder;
+  private ImageFolder folder;
 
-  public FolderClickEvent(int position, MediaFolder folder) {
+  public FolderClickEvent(int position, ImageFolder folder) {
     this.position = position;
     this.folder = folder;
   }
 
-  public MediaFolder getFolder() {
+  public ImageFolder getFolder() {
     return folder;
   }
 

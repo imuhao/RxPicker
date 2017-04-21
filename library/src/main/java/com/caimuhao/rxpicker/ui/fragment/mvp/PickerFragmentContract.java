@@ -1,8 +1,7 @@
 package com.caimuhao.rxpicker.ui.fragment.mvp;
 
 import android.content.Context;
-import com.caimuhao.rxpicker.bean.MediaFolder;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.ui.base.BasePresenter;
 import com.caimuhao.rxpicker.ui.base.BaseView;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 public interface PickerFragmentContract {
 
   interface View extends BaseView {
-    void showAllImage(List<MediaFolder> datas);
+    void showAllImage(List<ImageFolder> datas);
   }
 
   public abstract class Presenter extends BasePresenter<View> {

@@ -7,8 +7,11 @@ import java.io.Serializable;
  * @time 2017/4/19  上午11:50
  * @desc ${TODD}
  */
-public class MediaItem implements Serializable, Comparable<MediaItem> {
+public class ImageItem implements Serializable, Comparable<ImageItem> {
 
+  /**
+   * Image id.
+   */
   private int id;
   /**
    * Image path.
@@ -23,14 +26,14 @@ public class MediaItem implements Serializable, Comparable<MediaItem> {
    */
   private long addTime;
 
-  public MediaItem(int id, String path, String name, long addTime) {
+  public ImageItem(int id, String path, String name, long addTime) {
     this.id = id;
     this.path = path;
     this.name = name;
     this.addTime = addTime;
   }
 
-  public MediaItem() {
+  public ImageItem() {
   }
 
   public int getId() {
@@ -65,7 +68,7 @@ public class MediaItem implements Serializable, Comparable<MediaItem> {
     this.path = path;
   }
 
-  public int compareTo(MediaItem o) {
+  public int compareTo(ImageItem o) {
     long time = o.getAddTime() - getAddTime();
     if (time > Integer.MAX_VALUE) {
       return Integer.MAX_VALUE;

@@ -1,7 +1,9 @@
 package com.caimuhao.rxpicker.ui.base;
 
 /**
- * Created by dafan on 2016/6/16 0016.
+ * @author Smile
+ * @time 2017/4/19  上午9:30
+ * @desc ${TODD}
  */
 public interface BaseView {
 

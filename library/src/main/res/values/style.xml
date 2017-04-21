@@ -7,7 +7,7 @@
     <item name="colorAccent">@color/rxpicker_colorAccent</item>
   </style>
 
-  <!-- BoxingActivity Theme-->
+  <!-- RxPickerActivity Theme-->
   <style name="RxPicker.AppTheme.NoActionBar" parent="RxPicker.AppTheme">
     <item name="android:windowNoTitle">true</item>
     <item name="android:fitsSystemWindows">false</item>

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.caimuhao.rxpicker.R;
-import com.caimuhao.rxpicker.bean.MediaFolder;
+import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.ui.adapter.PickerAlbumAdapter;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import java.util.List;
@@ -24,7 +24,7 @@ public class PopWindowManager {
   private PopupWindow mAlbumPopWindow;
   private PickerAlbumAdapter albumAdapter;
 
-  public void init(final TextView title, final List<MediaFolder> data) {
+  public void init(final TextView title, final List<ImageFolder> data) {
     albumAdapter = new PickerAlbumAdapter(data, DensityUtil.dp2px(title.getContext(), 80));
     albumAdapter.setDismissListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
@@ -39,7 +39,7 @@ public class PopWindowManager {
     });
   }
 
-  private void showPopWindow(View v, List<MediaFolder> data, PickerAlbumAdapter albumAdapter) {
+  private void showPopWindow(View v, List<ImageFolder> data, PickerAlbumAdapter albumAdapter) {
     if (mAlbumPopWindow == null) {
       int height = DensityUtil.dp2px(v.getContext(), 300);
       View windowView = createWindowView(v, albumAdapter);
@@ -54,7 +54,7 @@ public class PopWindowManager {
 
   @NonNull private View createWindowView(View clickView, PickerAlbumAdapter albumAdapter) {
     View view =
-        LayoutInflater.from(clickView.getContext()).inflate(R.layout.layout_rxpicker_album, null);
+        LayoutInflater.from(clickView.getContext()).inflate(R.layout.item_popwindow_album, null);
     RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.album_recycleview);
     recyclerView.setLayoutManager(
         new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));

@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.fragment;
+package com.caimuhao.rxpicker.ui.base;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.caimuhao.rxpicker.ui.base.BasePresenter;
-import com.caimuhao.rxpicker.ui.base.BaseView;
 import com.caimuhao.rxpicker.utils.ClassUtils;
 
 /**

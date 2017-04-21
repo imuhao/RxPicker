@@ -3,7 +3,9 @@ package com.caimuhao.rxpicker.utils;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Created by dafan on 2016/6/16 0016.
+ * @author Smile
+ * @time 2017/4/19  上午11:39
+ * @desc ${TODD}
  */
 public class ClassUtils {
   public static <T> T getT(Object o, int i) {

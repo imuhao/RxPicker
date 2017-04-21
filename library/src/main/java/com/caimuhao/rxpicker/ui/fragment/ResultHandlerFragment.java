@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import com.caimuhao.rxpicker.RxPickerManager;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import java.util.List;
 import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
@@ -19,7 +19,7 @@ import rx.subjects.PublishSubject;
  */
 public class ResultHandlerFragment extends Fragment {
 
-  PublishSubject<List<MediaItem>> resultSubject = PublishSubject.create();
+  PublishSubject<List<ImageItem>> resultSubject = PublishSubject.create();
   BehaviorSubject<Boolean> attachSubject = BehaviorSubject.create();
 
   public static final int REQUEST_CODE = 0x00100;
@@ -28,7 +28,7 @@ public class ResultHandlerFragment extends Fragment {
     return new ResultHandlerFragment();
   }
 
-  public PublishSubject<List<MediaItem>> getResultSubject() {
+  public PublishSubject<List<ImageItem>> getResultSubject() {
     return resultSubject;
   }
 

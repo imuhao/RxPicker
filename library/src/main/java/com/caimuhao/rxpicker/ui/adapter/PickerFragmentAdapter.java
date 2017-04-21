@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.caimuhao.rxpicker.PickerConfig;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.RxBus;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,8 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
   private int imageWidth;
   private PickerConfig config;
 
-  private List<MediaItem> datas;
-  private List<MediaItem> checkImage;
+  private List<ImageItem> datas;
+  private List<ImageItem> checkImage;
 
   public PickerFragmentAdapter(int imageWidth) {
     config = RxPickerManager.getInstance().getConfig();
@@ -56,23 +56,23 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
     int dataPosition = config.isShowCamera() ? position - 1 : position;
 
-    final MediaItem mediaItem = datas.get(dataPosition);
+    final ImageItem imageItem = datas.get(dataPosition);
     PickerViewHolder pickerViewHolder = (PickerViewHolder) holder;
-    pickerViewHolder.bind(mediaItem);
+    pickerViewHolder.bind(imageItem);
 
     pickerViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (config.isSingle()) {
-          RxBus.singleton().post(mediaItem);
+          RxBus.singleton().post(imageItem);
         } else {
           int maxValue = config.getMaxValue();
-          if (checkImage.size() == maxValue && !checkImage.contains(mediaItem)) {
+          if (checkImage.size() == maxValue && !checkImage.contains(imageItem)) {
             Toast.makeText(holder.itemView.getContext(), "最多选择" + maxValue + "张图片",
                 Toast.LENGTH_SHORT).show();
             return;
           }
-          boolean b = checkImage.contains(mediaItem) ? checkImage.remove(mediaItem)
-              : checkImage.add(mediaItem);
+          boolean b = checkImage.contains(imageItem) ? checkImage.remove(imageItem)
+              : checkImage.add(imageItem);
           notifyItemChanged(holder.getAdapterPosition());
         }
       }
@@ -96,7 +96,7 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
   }
 
-  public void setData(List<MediaItem> data) {
+  public void setData(List<ImageItem> data) {
     this.datas = data;
   }
 
@@ -104,8 +104,8 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     this.cameraClickListener = cameraClickListener;
   }
 
-  public ArrayList<MediaItem> getCheckImage() {
-    return (ArrayList<MediaItem>) checkImage;
+  public ArrayList<ImageItem> getCheckImage() {
+    return (ArrayList<ImageItem>) checkImage;
   }
 
   private class PickerViewHolder extends RecyclerView.ViewHolder {
@@ -119,15 +119,15 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
       cbCheck = (AppCompatCheckBox) itemView.findViewById(R.id.cb_check);
     }
 
-    private void bind(MediaItem mediaItem) {
+    private void bind(ImageItem imageItem) {
       ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
       layoutParams.width = imageWidth;
       layoutParams.height = imageWidth;
       imageView.setLayoutParams(layoutParams);
 
-      RxPickerManager.getInstance().display(imageView, mediaItem.getPath(), imageWidth, imageWidth);
+      RxPickerManager.getInstance().display(imageView, imageItem.getPath(), imageWidth, imageWidth);
       cbCheck.setVisibility(config.isSingle() ? View.GONE : View.VISIBLE);
-      cbCheck.setChecked(checkImage.contains(mediaItem));
+      cbCheck.setChecked(checkImage.contains(imageItem));
     }
   }
 

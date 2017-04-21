@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 import android.widget.Toast;
-import com.caimuhao.rxpicker.bean.MediaFolder;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageFolder;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,18 +44,18 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
   /**
    * Scan the list of pictures in the library.
    */
-  private Observable<List<MediaFolder>> getPhotoAlbum(final Context context) {
+  private Observable<List<ImageFolder>> getPhotoAlbum(final Context context) {
 
-    return Observable.unsafeCreate(new Observable.OnSubscribe<List<MediaFolder>>() {
-      @Override public void call(Subscriber<? super List<MediaFolder>> subscriber) {
+    return Observable.unsafeCreate(new Observable.OnSubscribe<List<ImageFolder>>() {
+      @Override public void call(Subscriber<? super List<ImageFolder>> subscriber) {
 
         Cursor cursor = MediaStore.Images.Media.query(context.getContentResolver(),
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI, STORE_IMAGES);
-        Map<String, MediaFolder> albumFolderMap = new HashMap<>();
+        Map<String, ImageFolder> albumFolderMap = new HashMap<>();
 
-        MediaFolder allImageMediaFolder = new MediaFolder();
-        allImageMediaFolder.setChecked(true);
-        allImageMediaFolder.setName("全部相册");
+        ImageFolder allImageImageFolder = new ImageFolder();
+        allImageImageFolder.setChecked(true);
+        allImageImageFolder.setName("全部相册");
 
         while (cursor.moveToNext()) {
           int imageId = cursor.getInt(0);
@@ -66,31 +66,31 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
           int bucketId = cursor.getInt(4);
           String bucketName = cursor.getString(5);
 
-          MediaItem MediaItem = new MediaItem(imageId, imagePath, imageName, addTime);
-          allImageMediaFolder.addPhoto(MediaItem);
+          ImageItem ImageItem = new ImageItem(imageId, imagePath, imageName, addTime);
+          allImageImageFolder.addPhoto(ImageItem);
 
-          MediaFolder mediaFolder = albumFolderMap.get(bucketName);
-          if (mediaFolder != null) {
-            mediaFolder.addPhoto(MediaItem);
+          ImageFolder imageFolder = albumFolderMap.get(bucketName);
+          if (imageFolder != null) {
+            imageFolder.addPhoto(ImageItem);
           } else {
-            mediaFolder = new MediaFolder(bucketId, bucketName);
-            mediaFolder.addPhoto(MediaItem);
+            imageFolder = new ImageFolder(bucketId, bucketName);
+            imageFolder.addPhoto(ImageItem);
 
-            albumFolderMap.put(bucketName, mediaFolder);
+            albumFolderMap.put(bucketName, imageFolder);
           }
         }
         cursor.close();
-        List<MediaFolder> mediaFolders = new ArrayList<>();
+        List<ImageFolder> imageFolders = new ArrayList<>();
 
-        Collections.sort(allImageMediaFolder.getImages());
-        mediaFolders.add(allImageMediaFolder);
+        Collections.sort(allImageImageFolder.getImages());
+        imageFolders.add(allImageImageFolder);
 
-        for (Map.Entry<String, MediaFolder> folderEntry : albumFolderMap.entrySet()) {
-          MediaFolder mediaFolder = folderEntry.getValue();
-          Collections.sort(mediaFolder.getImages());
-          mediaFolders.add(mediaFolder);
+        for (Map.Entry<String, ImageFolder> folderEntry : albumFolderMap.entrySet()) {
+          ImageFolder imageFolder = folderEntry.getValue();
+          Collections.sort(imageFolder.getImages());
+          imageFolders.add(imageFolder);
         }
-        subscriber.onNext(mediaFolders);
+        subscriber.onNext(imageFolders);
         subscriber.onCompleted();
       }
     });
@@ -109,9 +109,9 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
             view.hideWaitDialog();
           }
         })
-        .subscribe(new Action1<List<MediaFolder>>() {
-          @Override public void call(List<MediaFolder> mediaFolders) {
-            view.showAllImage(mediaFolders);
+        .subscribe(new Action1<List<ImageFolder>>() {
+          @Override public void call(List<ImageFolder> imageFolders) {
+            view.showAllImage(imageFolders);
           }
         }, new Action1<Throwable>() {
           @Override public void call(Throwable throwable) {

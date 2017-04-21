@@ -10,6 +10,7 @@ import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
  * @desc ${TODD}
  */
 public class GlideImageLoader implements RxPickerImageLoader {
+
   @Override public void display(ImageView imageView, String path, int width, int height) {
     Glide.with(imageView.getContext())
         .load(path)

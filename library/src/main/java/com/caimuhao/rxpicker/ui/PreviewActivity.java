@@ -9,8 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.caimuhao.rxpicker.R;
-import com.caimuhao.rxpicker.bean.MediaItem;
-import com.caimuhao.rxpicker.ui.adapter.VpPreViewAdapter;
+import com.caimuhao.rxpicker.bean.ImageItem;
+import com.caimuhao.rxpicker.ui.adapter.PreviewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +23,11 @@ public class PreviewActivity extends AppCompatActivity {
 
   private Toolbar toolbar;
   private ViewPager vpPreview;
-  private VpPreViewAdapter vpAdapter;
+  private PreviewAdapter vpAdapter;
 
-  private List<MediaItem> data;
+  private List<ImageItem> data;
 
-  public static void start(Context context, ArrayList<MediaItem> data) {
+  public static void start(Context context, ArrayList<ImageItem> data) {
     Intent intent = new Intent(context, PreviewActivity.class);
     intent.putExtra("preview_list", data);
     context.startActivity(intent);
@@ -39,7 +39,7 @@ public class PreviewActivity extends AppCompatActivity {
     handleData();
     setupToolbar();
     vpPreview = (ViewPager) findViewById(R.id.vp_preview);
-    vpAdapter = new VpPreViewAdapter(data);
+    vpAdapter = new PreviewAdapter(data);
     vpPreview.setAdapter(vpAdapter);
     vpPreview.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
       @Override public void onPageSelected(int position) {
@@ -49,7 +49,7 @@ public class PreviewActivity extends AppCompatActivity {
   }
 
   private void handleData() {
-    data = (List<MediaItem>) getIntent().getSerializableExtra("preview_list");
+    data = (List<ImageItem>) getIntent().getSerializableExtra("preview_list");
   }
 
   private void setupToolbar() {

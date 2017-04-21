@@ -6,7 +6,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.ViewGroup;
 import com.caimuhao.rxpicker.RxPickerManager;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import java.util.List;
 
 /**
@@ -14,11 +14,11 @@ import java.util.List;
  * @time 2017/4/20  上午11:39
  * @desc ${TODD}
  */
-public class VpPreViewAdapter extends PagerAdapter {
+public class PreviewAdapter extends PagerAdapter {
 
-  private List<MediaItem> data;
+  private List<ImageItem> data;
 
-  public VpPreViewAdapter(List<MediaItem> data) {
+  public PreviewAdapter(List<ImageItem> data) {
     this.data = data;
   }
 
@@ -34,9 +34,9 @@ public class VpPreViewAdapter extends PagerAdapter {
     AppCompatImageView imageView = new AppCompatImageView(container.getContext());
     ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
     imageView.setLayoutParams(layoutParams);
-    MediaItem mediaItem = data.get(position);
+    ImageItem imageItem = data.get(position);
     container.addView(imageView);
-    RxPickerManager.getInstance().display(imageView, mediaItem.getPath(), 100, 100);
+    RxPickerManager.getInstance().display(imageView, imageItem.getPath(), 100, 100);
     return imageView;
   }
 

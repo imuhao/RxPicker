@@ -3,8 +3,9 @@ package com.caimuhao.rxpicker;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.RxPickerActivity;
 import com.caimuhao.rxpicker.ui.fragment.ResultHandlerFragment;
 import java.util.List;
@@ -54,6 +55,9 @@ public class RxPicker {
     return this;
   }
 
+  /**
+   * Set the select max image limit
+   */
   public RxPicker limit(int limit) {
     RxPickerManager.getInstance().limit(limit);
     return this;
@@ -62,18 +66,18 @@ public class RxPicker {
   /**
    * start picker from activity
    */
-  public Observable<List<MediaItem>> start(Activity activity) {
+  public Observable<List<ImageItem>> start(Activity activity) {
     return start(activity.getFragmentManager());
   }
 
   /**
    * start picker from fragment
    */
-  public Observable<List<MediaItem>> start(Fragment fragment) {
+  public Observable<List<ImageItem>> start(Fragment fragment) {
     return start(fragment.getFragmentManager());
   }
 
-  private Observable<List<MediaItem>> start(FragmentManager fragmentManager) {
+  private Observable<List<ImageItem>> start(FragmentManager fragmentManager) {
     ResultHandlerFragment fragment = (ResultHandlerFragment) fragmentManager.findFragmentByTag(
         ResultHandlerFragment.class.getSimpleName());
 
@@ -83,7 +87,9 @@ public class RxPicker {
           .add(fragment, fragment.getClass().getSimpleName())
           .commit();
     } else if (fragment.isDetached()) {
-      fragmentManager.beginTransaction().attach(fragment).commit();
+      final FragmentTransaction transaction = fragmentManager.beginTransaction();
+      transaction.attach(fragment);
+      transaction.commit();
     }
 
     final ResultHandlerFragment finalFragment = fragment;
@@ -91,8 +97,8 @@ public class RxPicker {
       @Override public Boolean call(Boolean aBoolean) {
         return aBoolean;
       }
-    }).flatMap(new Func1<Boolean, Observable<List<MediaItem>>>() {
-      @Override public Observable<List<MediaItem>> call(Boolean aBoolean) {
+    }).flatMap(new Func1<Boolean, Observable<List<ImageItem>>>() {
+      @Override public Observable<List<ImageItem>> call(Boolean aBoolean) {
         Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
         finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
         return finalFragment.getResultSubject();

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.caimuhao.rxpicker.RxPickerManager;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * @desc ${TODD}
  */
 public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.ViewHolder> {
-  private List<MediaItem> datas;
+  private List<ImageItem> datas;
 
   private int imageSize;
 
@@ -34,7 +34,7 @@ public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.ViewHolder
     return datas == null ? 0 : datas.size();
   }
 
-  public void setData(List<MediaItem> datas) {
+  public void setData(List<ImageItem> datas) {
     this.datas = datas;
     notifyDataSetChanged();
   }
@@ -47,9 +47,9 @@ public class PickerAdapter extends RecyclerView.Adapter<PickerAdapter.ViewHolder
       image = (ImageView) itemView.findViewById(R.id.image);
     }
 
-    private void bind(MediaItem mediaItem) {
+    private void bind(ImageItem imageItem) {
       imageSize = DensityUtil.getDeviceWidth(itemView.getContext()) / 3;
-      RxPickerManager.getInstance().display(image, mediaItem.getPath(), imageSize, imageSize);
+      RxPickerManager.getInstance().display(image, imageItem.getPath(), imageSize, imageSize);
     }
   }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
 import com.caimuhao.rxpicker.bean.FolderClickEvent;
-import com.caimuhao.rxpicker.bean.MediaFolder;
+import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.utils.RxBus;
 import java.util.List;
 
@@ -21,12 +21,12 @@ import java.util.List;
 public class PickerAlbumAdapter extends RecyclerView.Adapter<PickerAlbumAdapter.ViewHolder> {
 
   private int imageWidth;
-  private List<MediaFolder> datas;
+  private List<ImageFolder> datas;
   private int checkPosition = 0;
 
   private View.OnClickListener dismissListener;
 
-  public PickerAlbumAdapter(List<MediaFolder> datas, int i) {
+  public PickerAlbumAdapter(List<ImageFolder> datas, int i) {
     this.datas = datas;
     imageWidth = i;
   }
@@ -45,8 +45,8 @@ public class PickerAlbumAdapter extends RecyclerView.Adapter<PickerAlbumAdapter.
         dismissListener.onClick(v);
         if (checkPosition == position) return;
 
-        MediaFolder newFolder = datas.get(position);
-        MediaFolder oldFolder = datas.get(checkPosition);
+        ImageFolder newFolder = datas.get(position);
+        ImageFolder oldFolder = datas.get(checkPosition);
 
         oldFolder.setChecked(false);
         newFolder.setChecked(true);
@@ -56,6 +56,7 @@ public class PickerAlbumAdapter extends RecyclerView.Adapter<PickerAlbumAdapter.
         checkPosition = position;
 
         RxBus.singleton().post(new FolderClickEvent(position, newFolder));
+
       }
     });
   }
@@ -80,11 +81,11 @@ public class PickerAlbumAdapter extends RecyclerView.Adapter<PickerAlbumAdapter.
       ivCheck = (ImageView) itemView.findViewById(R.id.iv_check);
     }
 
-    private void bind(MediaFolder mediaFolder) {
-      tvName.setText(mediaFolder.getName());
-      String path = mediaFolder.getImages().get(0).getPath();
+    private void bind(ImageFolder imageFolder) {
+      tvName.setText(imageFolder.getName());
+      String path = imageFolder.getImages().get(0).getPath();
       RxPickerManager.getInstance().display(ivPreView, path, imageWidth, imageWidth);
-      ivCheck.setVisibility(mediaFolder.isChecked() ? View.VISIBLE : View.GONE);
+      ivCheck.setVisibility(imageFolder.isChecked() ? View.VISIBLE : View.GONE);
     }
   }
 }

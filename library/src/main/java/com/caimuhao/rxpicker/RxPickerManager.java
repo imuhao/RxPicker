@@ -2,7 +2,7 @@ package com.caimuhao.rxpicker;
 
 import android.content.Intent;
 import android.widget.ImageView;
-import com.caimuhao.rxpicker.bean.MediaItem;
+import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
 import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
 import java.util.List;
@@ -62,8 +62,8 @@ public class RxPickerManager {
     imageLoader.display(imageView, path, width, height);
   }
 
-  public List<MediaItem> getResult(Intent intent) {
-    return (List<MediaItem>) intent.getSerializableExtra(PickerFragment.MEDIA_RESULT);
+  public List<ImageItem> getResult(Intent intent) {
+    return (List<ImageItem>) intent.getSerializableExtra(PickerFragment.MEDIA_RESULT);
   }
 
   public void limit(int limit) {

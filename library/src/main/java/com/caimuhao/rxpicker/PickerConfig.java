@@ -11,7 +11,7 @@ public class PickerConfig {
   private int maxValue = 9;
   private boolean showCamera = true;
 
-  public enum Mode {
+  enum Mode {
     SINGLE_IMG, MULTIPLE_IMG
   }
 

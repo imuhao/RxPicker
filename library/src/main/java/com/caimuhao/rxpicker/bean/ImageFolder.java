@@ -19,8 +19,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * @author Smile
+ * @time 2017/4/19  上午9:30
+ * @desc ${TODD}
  */
-public class MediaFolder implements Serializable {
+public class ImageFolder implements Serializable {
 
   private int id;
   /**
@@ -30,17 +33,17 @@ public class MediaFolder implements Serializable {
   /**
    * Image list in folder.
    */
-  private ArrayList<MediaItem> images = new ArrayList<>();
+  private ArrayList<ImageItem> images = new ArrayList<>();
   /**
    * checked.
    */
   private boolean isChecked;
 
-  public MediaFolder() {
+  public ImageFolder() {
     super();
   }
 
-  public MediaFolder(int id, String name) {
+  public ImageFolder(int id, String name) {
     this.id = id;
     this.name = name;
   }
@@ -61,11 +64,11 @@ public class MediaFolder implements Serializable {
     this.name = name;
   }
 
-  public ArrayList<MediaItem> getImages() {
+  public ArrayList<ImageItem> getImages() {
     return images;
   }
 
-  public void addPhoto(MediaItem photo) {
+  public void addPhoto(ImageItem photo) {
     this.images.add(photo);
   }
 

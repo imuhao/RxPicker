@@ -1,25 +1,26 @@
-# RxPicker
-The ImageSelect tool based on RxJava.
+## RxPicker
 
-[中文文档](./README-CN.md)
+基于 RxJava 的 Android 图片选择器.
 
-### Feature
+### 特征
 
-1. Combined with RxJava ,Supper observer pattern to get result
-2. Supper single/multiple select image
-3. Compatible with Android 7.0
-4. Supper custom `RxPickerImageLoader`
+1. 与 RxJava 结合,支持响应式得到选择图片结果
+2. 支持单/多选图片
+3. 兼容 Android 7.0
+4. 支持自定义 `RxPickerImageLoader`
+
 
 
 ### Demo
 
-### Preview
 
-### Use Glide
+### 预览图
 
-1.Add gradle:
 
-2.Extends `RxPickerImageLoader` create custom  ImageLoader
+### 使用
+
+1.添加 gradle 引用
+2.继承 `RxPickerImageLoader` 创建自定义的图片加载
 
 ```
 public class GlideImageLoader implements RxPickerImageLoader {
@@ -34,26 +35,23 @@ public class GlideImageLoader implements RxPickerImageLoader {
   }
 }
 ```
-
-3.Initialize RxPicker
+3.初始化 `RxPicker`
 
 ```
 RxPickerManager.getInstance().init(new GlideImageLoader());
 ```
+4.使用
 
-4.Use
-
-- Image Single
-
+- 图片单选
 ```
 RxPicker.of().start(this).subscribe(new Action1<List<ImageItem>>() {
         @Override public void call(List<ImageItem> images) {
-          // Get the result
+          // 得到结果
         }
       });
 ```
 
-- Image multiple
+- 图片多选
 
 ```
 RxPicker.of()
@@ -63,7 +61,7 @@ RxPicker.of()
           .start(this)
           .subscribe(new Action1<List<ImageItem>>() {
             @Override public void call(List<ImageItem> images) {
-              //Get the result
+              //  得到结果
 
             }
           });
