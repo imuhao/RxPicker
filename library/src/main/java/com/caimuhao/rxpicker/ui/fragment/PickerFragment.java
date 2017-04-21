@@ -167,7 +167,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
     }
   }
 
-    private void handleCameraResult() {
+  private void handleCameraResult() {
     File file = CameraHelper.getTakeImageFile();
     CameraHelper.scanPic(getActivity(), file);
     for (ImageFolder imageFolder : allFolder) {
