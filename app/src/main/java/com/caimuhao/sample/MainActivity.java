@@ -22,12 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private RecyclerView recyclerView;
   private PickerAdapter adapter;
 
-  /**
-
-
-
-
-   */
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -51,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     if (btnSingleImg == v) {
       RxPicker.of().start(this).subscribe(new Action1<List<ImageItem>>() {
         @Override public void call(List<ImageItem> images) {
-
           adapter.setData(images);
         }
       });
@@ -63,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           .start(this)
           .subscribe(new Action1<List<ImageItem>>() {
             @Override public void call(List<ImageItem> images) {
-              // 得到选择的图片
               adapter.setData(images);
             }
           });
