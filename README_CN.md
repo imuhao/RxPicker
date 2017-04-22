@@ -10,11 +10,10 @@
 4. 支持自定义 `RxPickerImageLoader`
 
 
-
-## Demo
-
-
 ## 预览图
+
+<image src="./image/1.gif" width="200px"/> 
+<image src="./image/2.gif" width="200px"/> 
 
 
 ## 使用

@@ -11,9 +11,10 @@ The ImageSelect tool based on RxJava.
 4. Supper custom `RxPickerImageLoader`
 
 
-## Demo
-
 ## Preview
+
+<image src="./image/1.gif" width="170px"/> 
+<image src="./image/2.gif" width="170px"/> 
 
 ## Use Glide
 
