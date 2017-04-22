@@ -1,7 +1,7 @@
 # RxPicker
 The ImageSelect tool based on RxJava.
 
-[中文文档](./README-CN.md)
+[中文文档](./README_CN.md)
 
 ## Feature
 
