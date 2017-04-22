@@ -1,7 +1,10 @@
 package com.caimuhao.rxpicker.ui.base;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ public abstract class AbstractFragment<P extends BasePresenter> extends Fragment
     implements BaseView {
 
   public P presenter;
+  protected ProgressDialog waitDialog;
 
   @Nullable @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -33,11 +37,27 @@ public abstract class AbstractFragment<P extends BasePresenter> extends Fragment
   protected abstract void initView(View view);
 
   public void showWaitDialog() {
+    if (!Thread.currentThread().getName().equals("main")) {
+      new Handler(Looper.getMainLooper()).post(new DialogRunnable());
+    } else {
+      new DialogRunnable().run();
+    }
+  }
 
+  private class DialogRunnable implements Runnable {
+    @Override public void run() {
+      if (waitDialog == null) {
+        waitDialog = new ProgressDialog(getActivity());
+        waitDialog.setMessage("加载数据..");
+      }
+      waitDialog.show();
+    }
   }
 
   public void hideWaitDialog() {
-
+    if (waitDialog != null) {
+      waitDialog.dismiss();
+    }
   }
 
   @Override public void onDestroyView() {

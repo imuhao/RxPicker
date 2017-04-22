@@ -44,14 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   @Override public void onClick(View v) {
     if (btnSingleImg == v) {
-
       RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
         @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
           adapter.setData(imageItems);
         }
       });
     } else if (btnMultiImg == v) {
-
       RxPicker.of()
           .single(false)
           .camera(true)

@@ -10,6 +10,7 @@ import com.caimuhao.rxpicker.bean.ImageItem;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -100,22 +101,26 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
   }
 
   @Override public void loadAllImage(final Context context) {
-    getPhotoAlbum(context).subscribeOn(Schedulers.io()).doOnSubscribe(new Consumer<Disposable>() {
-      @Override public void accept(@NonNull Disposable disposable) throws Exception {
-        view.showWaitDialog();
-      }
-    }).doOnTerminate(new Action() {
-      @Override public void run() throws Exception {
-        view.hideWaitDialog();
-      }
-    }).subscribe(new Consumer<List<ImageFolder>>() {
-      @Override public void accept(@NonNull List<ImageFolder> imageFolders) throws Exception {
-        view.showAllImage(imageFolders);
-      }
-    }, new Consumer<Throwable>() {
-      @Override public void accept(@NonNull Throwable throwable) throws Exception {
-        Toast.makeText(context, "获取图片失败!", Toast.LENGTH_SHORT).show();
-      }
-    });
+    getPhotoAlbum(context).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSubscribe(new Consumer<Disposable>() {
+          @Override public void accept(@NonNull Disposable disposable) throws Exception {
+            view.showWaitDialog();
+          }
+        })
+        .doOnTerminate(new Action() {
+          @Override public void run() throws Exception {
+            view.hideWaitDialog();
+          }
+        })
+        .subscribe(new Consumer<List<ImageFolder>>() {
+          @Override public void accept(@NonNull List<ImageFolder> imageFolders) throws Exception {
+            view.showAllImage(imageFolders);
+          }
+        }, new Consumer<Throwable>() {
+          @Override public void accept(@NonNull Throwable throwable) throws Exception {
+            Toast.makeText(context, "获取图片失败!", Toast.LENGTH_SHORT).show();
+          }
+        });
   }
 }
