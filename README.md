@@ -3,7 +3,7 @@ The ImageSelect tool based on RxJava.
 
 [中文文档](./README-CN.md)
 
-### Feature
+## Feature
 
 1. Combined with RxJava ,Supper observer pattern to get result
 2. Supper single/multiple select image
@@ -11,13 +11,17 @@ The ImageSelect tool based on RxJava.
 4. Supper custom `RxPickerImageLoader`
 
 
-### Demo
+## Demo
 
-### Preview
+## Preview
 
-### Use Glide
+## Use Glide
 
 1.Add gradle:
+
+```
+compile 'com.caimuhao:rxpicker:1.0.0'
+```
 
 2.Extends `RxPickerImageLoader` create custom  ImageLoader
 

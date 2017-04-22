@@ -2,7 +2,7 @@
 
 基于 RxJava 的 Android 图片选择器.
 
-### 特征
+## 特征
 
 1. 与 RxJava 结合,支持响应式得到选择图片结果
 2. 支持单/多选图片
@@ -11,15 +11,20 @@
 
 
 
-### Demo
+## Demo
 
 
-### 预览图
+## 预览图
 
 
-### 使用
+## 使用
 
 1.添加 gradle 引用
+
+```
+compile 'com.caimuhao:rxpicker:1.0.0'
+```
+
 2.继承 `RxPickerImageLoader` 创建自定义的图片加载
 
 ```
@@ -35,11 +40,13 @@ public class GlideImageLoader implements RxPickerImageLoader {
   }
 }
 ```
+
 3.初始化 `RxPicker`
 
 ```
 RxPickerManager.getInstance().init(new GlideImageLoader());
 ```
+
 4.使用
 
 - 图片单选

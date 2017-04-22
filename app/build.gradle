@@ -21,5 +21,6 @@ android {
 dependencies {
   compile 'com.android.support:appcompat-v7:25.3.1'
   compile 'com.github.bumptech.glide:glide:3.7.0'
-  compile project(':library')
+  compile project(':rxpicker')
 }
+

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.caimuhao.rxpicker.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
+import com.caimuhao.rxpicker.utils.DensityUtil;
 import java.util.List;
 
 /**
@@ -36,7 +37,9 @@ public class PreviewAdapter extends PagerAdapter {
     imageView.setLayoutParams(layoutParams);
     ImageItem imageItem = data.get(position);
     container.addView(imageView);
-    RxPickerManager.getInstance().display(imageView, imageItem.getPath(), 100, 100);
+    int deviceWidth = DensityUtil.getDeviceWidth(container.getContext());
+    RxPickerManager.getInstance()
+        .display(imageView, imageItem.getPath(), deviceWidth, deviceWidth);
     return imageView;
   }
 
