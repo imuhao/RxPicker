@@ -42,7 +42,7 @@ public class GlideImageLoader implements RxPickerImageLoader {
 3.Initialize RxPicker
 
 ```
-RxPickerManager.getInstance().init(new GlideImageLoader());
+RxPicker.init(new GlideImageLoader());
 ```
 
 4.Use

@@ -33,7 +33,7 @@ public class RxPickerManager {
   private RxPickerManager() {
   }
 
-  public RxPickerManager setConfig(PickerConfig config) {
+  RxPickerManager setConfig(PickerConfig config) {
     this.config = config;
     return this;
   }
@@ -42,31 +42,31 @@ public class RxPickerManager {
     return config;
   }
 
-  public void init(RxPickerImageLoader imageLoader) {
+  void init(RxPickerImageLoader imageLoader) {
     this.imageLoader = imageLoader;
   }
 
-  public void setMode(PickerConfig.Mode mode) {
+  void setMode(PickerConfig.Mode mode) {
     config.setMode(mode);
   }
 
-  public void showCamera(boolean showCamera) {
+  void showCamera(boolean showCamera) {
     config.setShowCamera(showCamera);
+  }
+
+  void limit(int limit) {
+    config.setMaxValue(limit);
   }
 
   public void display(ImageView imageView, String path, int width, int height) {
     if (imageLoader == null) {
       throw new NullPointerException(
-          "you must call  RxPickerManager.getInstance().setImageLoad()  set custom ImageLoad");
+          "You must fist of all call 'RxPickerManager.getInstance().init()' to initialize");
     }
     imageLoader.display(imageView, path, width, height);
   }
 
   public List<ImageItem> getResult(Intent intent) {
     return (List<ImageItem>) intent.getSerializableExtra(PickerFragment.MEDIA_RESULT);
-  }
-
-  public void limit(int limit) {
-    config.setMaxValue(limit);
   }
 }

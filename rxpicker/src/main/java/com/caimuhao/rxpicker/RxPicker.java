@@ -8,6 +8,7 @@ import android.content.Intent;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.RxPickerActivity;
 import com.caimuhao.rxpicker.ui.fragment.ResultHandlerFragment;
+import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
 import java.util.List;
 import rx.Observable;
 import rx.functions.Func1;
@@ -27,7 +28,7 @@ public class RxPicker {
    * Using the custom config
    */
 
-  public static RxPicker of(PickerConfig config) {
+  static RxPicker of(PickerConfig config) {
     return new RxPicker(config);
   }
 
@@ -104,5 +105,9 @@ public class RxPicker {
         return finalFragment.getResultSubject();
       }
     }).take(1);
+  }
+
+  public static void init(RxPickerImageLoader imageLoader) {
+    RxPickerManager.getInstance().init(imageLoader);
   }
 }

@@ -1,7 +1,7 @@
 package com.caimuhao.sample;
 
 import android.app.Application;
-import com.caimuhao.rxpicker.RxPickerManager;
+import com.caimuhao.rxpicker.RxPicker;
 
 /**
  * @author Smile
@@ -12,6 +12,6 @@ public class App extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
-    RxPickerManager.getInstance().init(new GlideImageLoader());
+    RxPicker.init(new GlideImageLoader());
   }
 }
