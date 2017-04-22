@@ -35,7 +35,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 def siteUrl = 'https://github.com/imuhao/RxPicker'
 def gitUrl = 'https://github.com/imuhao/RxPicker.git'
 
-version = "1.1.0"
+version = "1.1.1"
 group = "com.caimuhao"
 
 bintray {
