@@ -15,6 +15,8 @@ public class GlideImageLoader implements RxPickerImageLoader {
     Glide.with(imageView.getContext())
         .load(path)
         .error(R.drawable.ic_preview_image)
+        .centerCrop()
+        .override(width, height)
         .into(imageView);
   }
 }
