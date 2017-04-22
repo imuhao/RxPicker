@@ -13,8 +13,8 @@ The ImageSelect tool based on RxJava.
 
 ## Preview
 
-<image src="./image/1.gif" width="170px"/> 
-<image src="./image/2.gif" width="170px"/> 
+<image src="./image/1.png" width="200px"/> 
+<image src="./image/2.png" width="200px"/> 
 
 ## Use Glide
 
