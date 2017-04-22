@@ -10,8 +10,8 @@ android {
   defaultConfig {
     minSdkVersion 15
     targetSdkVersion 25
-    versionCode 1
-    versionName "1.0"
+    versionCode 2
+    versionName version
   }
 
   buildTypes {
@@ -35,26 +35,26 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 def siteUrl = 'https://github.com/imuhao/RxPicker'
 def gitUrl = 'https://github.com/imuhao/RxPicker.git'
 
-version = "1.0.0"
+version = "1.0.1"
 group = "com.caimuhao"
 
 bintray {
   user = properties.getProperty("bintray.user")
   key = properties.getProperty("bintray.apikey")
   pkg {
-    repo = 'maven'//自己bintray创建仓库名字
-    name = 'RxPicker'//Library的名字
+    repo = 'maven' //自己bintray创建仓库名字
+    name = 'RxPicker' //Library的名字
     websiteUrl = siteUrl
     vcsUrl = gitUrl
-    licenses = ['MIT']//不能随便写，只能是仓库创建时选择的license type
+    licenses = ['MIT'] //不能随便写，只能是仓库创建时选择的license type
     userOrg = 'muhaocai' //自己bintray创建的organization名称
     publish = true // 是否是公开项目。
 
     version {
-      name = '1.0.0'
+      name = version
       desc = 'The imageselect tool based on RxJava.'
-      released  = new Date()
-      vcsTag = 'v1.0'
+      released = new Date()
+      vcsTag = 'v' + version
       attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
     }
   }
@@ -81,8 +81,8 @@ install {
         }
         developers {
           developer {
-            id 'imuhao'        //填写bintray或者github的用户名
-            name 'caimuhao'         //姓名，可以是中文
+            id 'imuhao' //填写bintray或者github的用户名
+            name 'caimuhao' //姓名，可以是中文
             email 'caimuhao@gmail.com'
           }
         }
