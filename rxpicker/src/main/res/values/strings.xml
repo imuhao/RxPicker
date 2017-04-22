@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">RxPicker</string>
+
+  <string name="all_phone_album">全部相册</string>
+  <string name="select_confirm">确定</string>
+  <string name="max_select">最多选择%s张图片</string>
 </resources>

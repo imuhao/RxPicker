@@ -57,7 +57,7 @@ public class RxPickerManager {
   public void display(ImageView imageView, String path, int width, int height) {
     if (imageLoader == null) {
       throw new NullPointerException(
-          "you must call  RxPickerManager.getInstance().setImageLoad()  set imageLoad");
+          "you must call  RxPickerManager.getInstance().setImageLoad()  set custom ImageLoad");
     }
     imageLoader.display(imageView, path, width, height);
   }

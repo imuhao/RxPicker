@@ -23,10 +23,8 @@
         android:maxLines="1"
         android:maxWidth="120dp"
         android:minWidth="50dp"
-        android:text="全部相册"
+        android:text="@string/all_phone_album"
         />
-    <!--android:drawableRight="@drawable/ic_spinner_mtrl_am_alpha"-->
-
 
     <ImageView
         android:layout_width="30dp"
@@ -61,7 +59,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
-        android:text="确定"
+        android:text="@string/select_confirm"
         android:textColor="@color/rxpicker_width"
         />
   </RelativeLayout>

@@ -67,7 +67,9 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         } else {
           int maxValue = config.getMaxValue();
           if (checkImage.size() == maxValue && !checkImage.contains(imageItem)) {
-            Toast.makeText(holder.itemView.getContext(), "最多选择" + maxValue + "张图片",
+
+            Toast.makeText(holder.itemView.getContext(),
+                holder.itemView.getContext().getString(R.string.max_select, config.getMaxValue()),
                 Toast.LENGTH_SHORT).show();
             return;
           }

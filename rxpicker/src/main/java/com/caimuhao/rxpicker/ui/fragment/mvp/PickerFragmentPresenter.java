@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 import android.widget.Toast;
+import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
 
         ImageFolder allImageImageFolder = new ImageFolder();
         allImageImageFolder.setChecked(true);
-        allImageImageFolder.setName("全部相册");
+        allImageImageFolder.setName(context.getString(R.string.all_phone_album));
 
         while (cursor.moveToNext()) {
           int imageId = cursor.getInt(0);
