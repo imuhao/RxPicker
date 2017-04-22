@@ -1,10 +1,7 @@
-
 package com.caimuhao.rxpicker.utils;
 
-import rx.Observable;
-import rx.subjects.PublishSubject;
-import rx.subjects.SerializedSubject;
-import rx.subjects.Subject;
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * @author Smile
@@ -14,7 +11,7 @@ import rx.subjects.Subject;
 
 public class RxBus {
 
-  private final Subject<Object, Object> bus = new SerializedSubject<>(PublishSubject.create());
+  private final PublishSubject<Object> bus = PublishSubject.create();
 
   private static final RxBus BUS = new RxBus();
 

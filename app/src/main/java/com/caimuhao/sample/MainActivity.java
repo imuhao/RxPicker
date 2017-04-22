@@ -10,8 +10,9 @@ import android.widget.TextView;
 import com.caimuhao.rxpicker.RxPicker;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import java.util.List;
-import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,20 +44,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   @Override public void onClick(View v) {
     if (btnSingleImg == v) {
-      RxPicker.of().start(this).subscribe(new Action1<List<ImageItem>>() {
-        @Override public void call(List<ImageItem> images) {
-          adapter.setData(images);
+
+      RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
+        @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
+          adapter.setData(imageItems);
         }
       });
     } else if (btnMultiImg == v) {
+
       RxPicker.of()
           .single(false)
           .camera(true)
           .limit(3)
           .start(this)
-          .subscribe(new Action1<List<ImageItem>>() {
-            @Override public void call(List<ImageItem> images) {
-              adapter.setData(images);
+          .subscribe(new Consumer<List<ImageItem>>() {
+            @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
+              adapter.setData(imageItems);
             }
           });
     }

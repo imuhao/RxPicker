@@ -1,7 +1,7 @@
 package com.caimuhao.rxpicker.ui.base;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author Smile
@@ -11,29 +11,26 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BasePresenter<V extends BaseView> {
 
   public V view;
-  protected CompositeSubscription compositeSubscription = new CompositeSubscription();
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
   protected void start() {
 
   }
 
-  public void attachModelView(V v) {
+  void attachModelView(V v) {
     this.view = v;
     start();
   }
 
-  public void detachView() {
+  void detachView() {
     this.view = null;
-    if (compositeSubscription != null && compositeSubscription.hasSubscriptions()) {
-      compositeSubscription.unsubscribe();
+    if (compositeDisposable != null && compositeDisposable.isDisposed()) {
+      compositeDisposable.dispose();
     }
   }
 
-  public Subscription add(Subscription subscription) {
-    compositeSubscription.add(subscription);
-    return subscription;
+  public Disposable add(Disposable disposable) {
+    compositeDisposable.add(disposable);
+    return disposable;
   }
-
-
-
 }

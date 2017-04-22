@@ -9,9 +9,12 @@ import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.RxPickerActivity;
 import com.caimuhao.rxpicker.ui.fragment.ResultHandlerFragment;
 import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import java.util.List;
-import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * @author Smile
@@ -94,12 +97,13 @@ public class RxPicker {
     }
 
     final ResultHandlerFragment finalFragment = fragment;
-    return finalFragment.getAttachSubject().filter(new Func1<Boolean, Boolean>() {
-      @Override public Boolean call(Boolean aBoolean) {
+    return finalFragment.getAttachSubject().filter(new Predicate<Boolean>() {
+      @Override public boolean test(@NonNull Boolean aBoolean) throws Exception {
         return aBoolean;
       }
-    }).flatMap(new Func1<Boolean, Observable<List<ImageItem>>>() {
-      @Override public Observable<List<ImageItem>> call(Boolean aBoolean) {
+    }).flatMap(new Function<Boolean, ObservableSource<List<ImageItem>>>() {
+      @Override public ObservableSource<List<ImageItem>> apply(@NonNull Boolean aBoolean)
+          throws Exception {
         Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
         finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
         return finalFragment.getResultSubject();

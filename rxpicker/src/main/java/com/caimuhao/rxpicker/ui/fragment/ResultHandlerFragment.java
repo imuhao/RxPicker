@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Build;
 import com.caimuhao.rxpicker.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
+import io.reactivex.subjects.BehaviorSubject;
+import io.reactivex.subjects.PublishSubject;
 import java.util.List;
-import rx.subjects.BehaviorSubject;
-import rx.subjects.PublishSubject;
 
 /**
  * @author Smile

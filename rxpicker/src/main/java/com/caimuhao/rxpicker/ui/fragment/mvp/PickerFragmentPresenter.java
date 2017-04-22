@@ -7,17 +7,19 @@ import android.widget.Toast;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * @author Smile
@@ -47,8 +49,8 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
    */
   private Observable<List<ImageFolder>> getPhotoAlbum(final Context context) {
 
-    return Observable.unsafeCreate(new Observable.OnSubscribe<List<ImageFolder>>() {
-      @Override public void call(Subscriber<? super List<ImageFolder>> subscriber) {
+    return Observable.create(new ObservableOnSubscribe<List<ImageFolder>>() {
+      @Override public void subscribe(ObservableEmitter<List<ImageFolder>> e) throws Exception {
 
         Cursor cursor = MediaStore.Images.Media.query(context.getContentResolver(),
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI, STORE_IMAGES);
@@ -91,33 +93,29 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
           Collections.sort(imageFolder.getImages());
           imageFolders.add(imageFolder);
         }
-        subscriber.onNext(imageFolders);
-        subscriber.onCompleted();
+        e.onNext(imageFolders);
+        e.onComplete();
       }
     });
   }
 
   @Override public void loadAllImage(final Context context) {
-    getPhotoAlbum(context).subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSubscribe(new Action0() {
-          @Override public void call() {
-            view.showWaitDialog();
-          }
-        })
-        .doOnTerminate(new Action0() {
-          @Override public void call() {
-            view.hideWaitDialog();
-          }
-        })
-        .subscribe(new Action1<List<ImageFolder>>() {
-          @Override public void call(List<ImageFolder> imageFolders) {
-            view.showAllImage(imageFolders);
-          }
-        }, new Action1<Throwable>() {
-          @Override public void call(Throwable throwable) {
-            Toast.makeText(context, "获取图片失败!", Toast.LENGTH_SHORT).show();
-          }
-        });
+    getPhotoAlbum(context).subscribeOn(Schedulers.io()).doOnSubscribe(new Consumer<Disposable>() {
+      @Override public void accept(@NonNull Disposable disposable) throws Exception {
+        view.showWaitDialog();
+      }
+    }).doOnTerminate(new Action() {
+      @Override public void run() throws Exception {
+        view.hideWaitDialog();
+      }
+    }).subscribe(new Consumer<List<ImageFolder>>() {
+      @Override public void accept(@NonNull List<ImageFolder> imageFolders) throws Exception {
+        view.showAllImage(imageFolders);
+      }
+    }, new Consumer<Throwable>() {
+      @Override public void accept(@NonNull Throwable throwable) throws Exception {
+        Toast.makeText(context, "获取图片失败!", Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 }

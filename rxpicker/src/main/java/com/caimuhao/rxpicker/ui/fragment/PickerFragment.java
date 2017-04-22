@@ -34,11 +34,11 @@ import com.caimuhao.rxpicker.ui.view.PopWindowManager;
 import com.caimuhao.rxpicker.utils.CameraHelper;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import com.caimuhao.rxpicker.utils.RxBus;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import rx.Subscription;
-import rx.functions.Action1;
 
 /**
  * @author Smile
@@ -65,8 +65,8 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   private List<ImageFolder> allFolder;
 
   private PickerConfig config;
-  private Subscription folderSubscribe;
-  private Subscription mediaItemSubscribe;
+  private Disposable folderClicksubscribe;
+  private Disposable imageItemsubscribe;
 
   public static PickerFragment newInstance() {
     return new PickerFragment();
@@ -106,19 +106,22 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void initObservable() {
-    folderSubscribe = RxBus.singleton()
+    folderClicksubscribe = RxBus.singleton()
         .toObservable(FolderClickEvent.class)
-        .subscribe(new Action1<FolderClickEvent>() {
-          @Override public void call(FolderClickEvent folderClickEvent) {
+        .subscribe(new Consumer<FolderClickEvent>() {
+          @Override
+          public void accept(@io.reactivex.annotations.NonNull FolderClickEvent folderClickEvent)
+              throws Exception {
             String folderName = folderClickEvent.getFolder().getName();
             title.setText(folderName);
             refreshData(allFolder.get(folderClickEvent.getPosition()));
           }
         });
 
-    mediaItemSubscribe =
-        RxBus.singleton().toObservable(ImageItem.class).subscribe(new Action1<ImageItem>() {
-          @Override public void call(ImageItem imageItem) {
+    imageItemsubscribe =
+        RxBus.singleton().toObservable(ImageItem.class).subscribe(new Consumer<ImageItem>() {
+          @Override public void accept(@io.reactivex.annotations.NonNull ImageItem imageItem)
+              throws Exception {
             ArrayList<ImageItem> data = new ArrayList<>();
             data.add(imageItem);
             handleResult(data);
@@ -197,8 +200,14 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
 
   @Override public void onDestroy() {
     super.onDestroy();
-    if (!folderSubscribe.isUnsubscribed()) folderSubscribe.unsubscribe();
-    if (!mediaItemSubscribe.isUnsubscribed()) mediaItemSubscribe.unsubscribe();
+
+    if (!folderClicksubscribe.isDisposed()) {
+      folderClicksubscribe.dispose();
+    }
+
+    if (!imageItemsubscribe.isDisposed()) {
+      imageItemsubscribe.dispose();
+    }
   }
 
   @Override public void onClick(View v) {
