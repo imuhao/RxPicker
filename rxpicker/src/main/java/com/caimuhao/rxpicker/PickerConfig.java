@@ -1,5 +1,9 @@
 package com.caimuhao.rxpicker;
 
+import android.support.annotation.IntDef;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * @author Smile
  * @time 2017/4/18  下午6:07
@@ -7,19 +11,21 @@ package com.caimuhao.rxpicker;
  */
 public class PickerConfig {
 
-  private Mode mode = Mode.SINGLE_IMG;
   private int maxValue = 9;
   private boolean showCamera = true;
 
-  enum Mode {
-    SINGLE_IMG, MULTIPLE_IMG
+  static final int SINGLE_IMG = 0x001;
+  static final int MULTIPLE_IMG = 0x002;
+  private int mode = SINGLE_IMG;
+
+  @IntDef({ SINGLE_IMG, MULTIPLE_IMG }) @Retention(RetentionPolicy.SOURCE) @interface Mode {
   }
 
-  public Mode getMode() {
+  public int getMode() {
     return mode;
   }
 
-  public void setMode(Mode mode) {
+  public void setMode(@Mode int mode) {
     this.mode = mode;
   }
 
@@ -40,6 +46,6 @@ public class PickerConfig {
   }
 
   public boolean isSingle() {
-    return mode == Mode.SINGLE_IMG;
+    return mode == SINGLE_IMG;
   }
 }

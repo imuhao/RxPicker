@@ -47,7 +47,7 @@ public class RxPicker {
    */
   public RxPicker single(boolean single) {
     RxPickerManager.getInstance()
-        .setMode(single ? PickerConfig.Mode.SINGLE_IMG : PickerConfig.Mode.MULTIPLE_IMG);
+        .setMode(single ? PickerConfig.SINGLE_IMG : PickerConfig.MULTIPLE_IMG);
     return this;
   }
 

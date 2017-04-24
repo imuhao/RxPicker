@@ -46,7 +46,7 @@ public class RxPickerManager {
     this.imageLoader = imageLoader;
   }
 
-  void setMode(PickerConfig.Mode mode) {
+  void setMode(int mode) {
     config.setMode(mode);
   }
 
