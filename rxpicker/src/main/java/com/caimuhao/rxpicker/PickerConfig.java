@@ -38,8 +38,8 @@ public class PickerConfig {
     return minValue;
   }
 
-  public void setLimit(int min, int maxValue) {
-    this.minValue = min;
+  public void setLimit(int minValue, int maxValue) {
+    this.minValue = minValue;
     this.maxValue = maxValue;
   }
 

@@ -60,10 +60,10 @@ public class RxPicker {
   }
 
   /**
-   * Set the select max image limit
+   * Set the select  image limit
    */
-  public RxPicker limit(int min, int max) {
-    RxPickerManager.getInstance().limit(min, max);
+  public RxPicker limit(int minValue, int maxValue) {
+    RxPickerManager.getInstance().limit(minValue, maxValue);
     return this;
   }
 
