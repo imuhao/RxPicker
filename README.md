@@ -6,9 +6,9 @@ The ImageSelect tool based on RxJava.
 ## Feature
 
 1. Combined with RxJava ,Supper observer pattern to get result
-2. Supper single/multiple select image
+2. Support single/multiple Single image
 3. Compatible with Android 7.0
-4. Supper custom `RxPickerImageLoader`
+4. Custom Image Loader
 
 
 ## Preview
@@ -47,7 +47,7 @@ RxPicker.init(new GlideImageLoader());
 
 4.Use
 
-- Image Single
+-  Single Image
 
 ```
 RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
@@ -57,7 +57,7 @@ RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
       });
 ```
 
-- Image multiple
+- Multiple Images
 
 ```
 RxPicker.of()
