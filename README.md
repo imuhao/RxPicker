@@ -5,10 +5,9 @@ The ImageSelect tool based on RxJava.
 
 ## Feature
 
-1. Combined with RxJava ,Supper observer pattern to get result
-2. Support single/multiple Single image
-3. Compatible with Android 7.0
-4. Custom Image Loader
+1. Combined with RxJava , Supper observer pattern to get result
+2. Compatible with Android 7.0
+3. Custom Image Loader
 
 
 ## Preview

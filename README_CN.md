@@ -5,9 +5,8 @@
 ## 特征
 
 1. 与 RxJava 结合,支持响应式得到选择图片结果
-2. 支持单/多选图片
-3. 兼容 Android 7.0
-4. 自定义 `ImageLoader`
+2. 兼容 Android 7.0
+3. 自定义 `ImageLoader`
 
 
 ## 预览图
