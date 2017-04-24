@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.caimuhao.rxpicker.PickerConfig;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
@@ -34,6 +33,7 @@ import com.caimuhao.rxpicker.ui.view.PopWindowManager;
 import com.caimuhao.rxpicker.utils.CameraHelper;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import com.caimuhao.rxpicker.utils.RxBus;
+import com.caimuhao.rxpicker.utils.T;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import java.io.File;
@@ -156,10 +156,12 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
     recyclerView.setAdapter(adapter);
     adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
       @Override public void onItemRangeChanged(int positionStart, int itemCount) {
-        int maxValue = RxPickerManager.getInstance().getConfig().getMaxValue();
-        tvSelectOk.setText("确定 (" + adapter.getCheckImage().size() + "/" + maxValue + ") ");
+        tvSelectOk.setText(getString(R.string.select_confim, adapter.getCheckImage().size(),
+            config.getMaxValue()));
       }
     });
+    tvSelectOk.setText(
+        getString(R.string.select_confim, adapter.getCheckImage().size(), config.getMaxValue()));
   }
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -212,12 +214,19 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
 
   @Override public void onClick(View v) {
     if (tvSelectOk == v) {
+      int minValue = config.getMinValue();
       ArrayList<ImageItem> checkImage = adapter.getCheckImage();
+
+      if (checkImage.size() < minValue) {
+        T.show(getActivity(), getString(R.string.min_image, minValue));
+        return;
+      }
+
       handleResult(checkImage);
     } else if (ivSelectPreview == v) {
       ArrayList<ImageItem> checkImage = adapter.getCheckImage();
       if (checkImage.isEmpty()) {
-        Toast.makeText(getActivity(), "请选择一张照片!", Toast.LENGTH_SHORT).show();
+        T.show(getActivity(), getString(R.string.select_one_image));
         return;
       }
       PreviewActivity.start(getActivity(), checkImage);
@@ -240,7 +249,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
       if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
         takePictures();
       } else {
-        Toast.makeText(getActivity(), "获取权限失败!", Toast.LENGTH_SHORT).show();
+        T.show(getActivity(), getString(R.string.permissions_error));
       }
     }
   }

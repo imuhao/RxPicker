@@ -20,7 +20,7 @@ The ImageSelect tool based on RxJava.
 1.Add gradle:
 
 ```
-compile 'com.caimuhao:rxpicker:1.1.2'
+compile 'com.caimuhao:rxpicker:1.1.3'
 ```
 
 2.Extends `RxPickerImageLoader` create custom  ImageLoader
@@ -63,7 +63,7 @@ RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
 RxPicker.of()
           .single(false)
           .camera(true)
-          .limit(3)
+          .limit(3,9)
           .start(this)
           .subscribe(new Consumer<List<ImageItem>>() {
             @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {

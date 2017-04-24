@@ -12,6 +12,7 @@ import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.RxBus;
+import com.caimuhao.rxpicker.utils.T;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,10 +68,7 @@ public class PickerFragmentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         } else {
           int maxValue = config.getMaxValue();
           if (checkImage.size() == maxValue && !checkImage.contains(imageItem)) {
-
-            Toast.makeText(holder.itemView.getContext(),
-                holder.itemView.getContext().getString(R.string.max_select, config.getMaxValue()),
-                Toast.LENGTH_SHORT).show();
+            T.show(holder.itemView.getContext(),holder.itemView.getContext().getString(R.string.max_select, config.getMaxValue()));
             return;
           }
           boolean b = checkImage.contains(imageItem) ? checkImage.remove(imageItem)

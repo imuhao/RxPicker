@@ -3,10 +3,10 @@ package com.caimuhao.rxpicker.ui.fragment.mvp;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
-import android.widget.Toast;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
+import com.caimuhao.rxpicker.utils.T;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -119,7 +119,7 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
           }
         }, new Consumer<Throwable>() {
           @Override public void accept(@NonNull Throwable throwable) throws Exception {
-            Toast.makeText(context, "获取图片失败!", Toast.LENGTH_SHORT).show();
+            T.show(context, context.getString(R.string.load_image_error));
           }
         });
   }

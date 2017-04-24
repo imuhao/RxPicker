@@ -20,7 +20,7 @@
 1.添加 gradle 引用
 
 ```
-compile 'com.caimuhao:rxpicker:1.1.2'
+compile 'com.caimuhao:rxpicker:1.1.3'
 ```
 
 2.继承 `RxPickerImageLoader` 创建自定义的图片加载
@@ -62,7 +62,7 @@ RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
 RxPicker.of()
           .single(false)
           .camera(true)
-          .limit(3)
+          .limit(3,9)
           .start(this)
           .subscribe(new Consumer<List<ImageItem>>() {
             @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {

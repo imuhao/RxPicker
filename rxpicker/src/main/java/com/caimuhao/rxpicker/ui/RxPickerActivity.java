@@ -8,9 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
+import com.caimuhao.rxpicker.utils.T;
 
 /**
  * @author Smile
@@ -45,7 +45,7 @@ public class RxPickerActivity extends AppCompatActivity {
       if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
         setupFragment();
       } else {
-        Toast.makeText(RxPickerActivity.this, "获取权限失败!", Toast.LENGTH_SHORT).show();
+        T.show(RxPickerActivity.this, getString(R.string.permissions_error));
         finish();
       }
     }

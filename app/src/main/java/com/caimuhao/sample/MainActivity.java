@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       RxPicker.of()
           .single(false)
           .camera(true)
-          .limit(3)
+          .limit(3, 9)
           .start(this)
           .subscribe(new Consumer<List<ImageItem>>() {
             @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {

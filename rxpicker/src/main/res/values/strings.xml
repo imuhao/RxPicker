@@ -1,7 +1,11 @@
 <resources>
   <string name="app_name">RxPicker</string>
 
+  <string formatted="false" name="select_confim">确定 (%d/%d)</string>
   <string name="all_phone_album">全部相册</string>
-  <string name="select_confirm">确定</string>
   <string name="max_select">最多选择%s张图片</string>
+  <string name="select_one_image">请选择一张照片</string>
+  <string name="min_image">请至少选择%d张照片</string>
+  <string name="permissions_error">获取权限失败</string>
+  <string name="load_image_error">获取图片失败</string>
 </resources>
