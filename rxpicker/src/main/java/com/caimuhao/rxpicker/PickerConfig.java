@@ -17,7 +17,6 @@ public class PickerConfig {
   static final int SINGLE_IMG = 0x001;
   static final int MULTIPLE_IMG = 0x002;
   private int mode = SINGLE_IMG;
-
   @IntDef({ SINGLE_IMG, MULTIPLE_IMG }) @Retention(RetentionPolicy.SOURCE) @interface Mode {
   }
 
