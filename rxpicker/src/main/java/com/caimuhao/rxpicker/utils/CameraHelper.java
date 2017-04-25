@@ -30,7 +30,8 @@ public class CameraHelper {
       takeImageFile = createFile(takeImageFile, "IMG_", ".jpg");
       Uri uri;
       if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-        uri = FileProvider.getUriForFile(fragment.getActivity(), "com.caimuhao", takeImageFile);
+        String authorities = ProviderUtil.getFileProviderName(fragment.getContext());
+        uri = FileProvider.getUriForFile(fragment.getActivity(), authorities, takeImageFile);
       } else {
         uri = Uri.fromFile(takeImageFile);
       }
