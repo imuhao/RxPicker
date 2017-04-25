@@ -54,6 +54,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   private static final int CAMERA_PERMISSION = 0x002;
 
   public static final String MEDIA_RESULT = "media_result";
+
   private TextView title;
   private Toolbar toolbar;
   private RecyclerView recyclerView;

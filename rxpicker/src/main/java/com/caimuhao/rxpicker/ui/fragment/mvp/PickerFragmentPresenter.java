@@ -8,13 +8,12 @@ import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.T;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,10 +47,9 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
   /**
    * Scan the list of pictures in the library.
    */
-  private Observable<List<ImageFolder>> getPhotoAlbum(final Context context) {
-
-    return Observable.create(new ObservableOnSubscribe<List<ImageFolder>>() {
-      @Override public void subscribe(ObservableEmitter<List<ImageFolder>> e) throws Exception {
+  private Observable<List<ImageFolder>> loadAllFolder(final Context context) {
+    return Observable.just(true).map(new Function<Boolean, List<ImageFolder>>() {
+      @Override public List<ImageFolder> apply(@NonNull Boolean aBoolean) throws Exception {
 
         Cursor cursor = MediaStore.Images.Media.query(context.getContentResolver(),
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI, STORE_IMAGES);
@@ -83,6 +81,7 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
             albumFolderMap.put(bucketName, imageFolder);
           }
         }
+
         cursor.close();
         List<ImageFolder> imageFolders = new ArrayList<>();
 
@@ -94,14 +93,14 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
           Collections.sort(imageFolder.getImages());
           imageFolders.add(imageFolder);
         }
-        e.onNext(imageFolders);
-        e.onComplete();
+        return imageFolders;
       }
     });
   }
 
   @Override public void loadAllImage(final Context context) {
-    getPhotoAlbum(context).subscribeOn(Schedulers.io())
+    loadAllFolder(context)
+        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe(new Consumer<Disposable>() {
           @Override public void accept(@NonNull Disposable disposable) throws Exception {
