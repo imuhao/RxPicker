@@ -1,0 +1,88 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def siteUrl = 'https://github.com/imuhao/RxPicker'
+def gitUrl = 'https://github.com/imuhao/RxPicker.git'
+
+version = "1.1.4"
+group = "com.caimuhao"
+
+bintray {
+  user = properties.getProperty("bintray.user")
+  key = properties.getProperty("bintray.apikey")
+  pkg {
+    repo = 'maven' //自己bintray创建仓库名字
+    name = 'RxPicker' //Library的名字
+    websiteUrl = siteUrl
+    vcsUrl = gitUrl
+    licenses = ['MIT'] //不能随便写，只能是仓库创建时选择的license type
+    userOrg = 'muhaocai' //自己bintray创建的organization名称
+    publish = true // 是否是公开项目。
+
+    version {
+      name = version
+      desc = 'The ImageSelect tool based on RxJava.'
+      released = new Date()
+      vcsTag = 'v' + version
+      attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+    }
+  }
+  configurations = ['archives']
+}
+
+
+install {
+  repositories.mavenInstaller {
+    // This generates POM.xml with proper parameters
+    pom {
+      project {
+        packaging 'aar'
+        // Add your description here
+        name 'RxPicker'
+        description 'The ImageSelect tool based on RxJava.'
+        url siteUrl
+        // Set your license
+        licenses {
+          license {
+            name 'MIT'
+            url 'https://raw.githubusercontent.com/minggo620/Pluto-Android/master/LICENSE'
+          }
+        }
+        developers {
+          developer {
+            id 'imuhao' //填写bintray或者github的用户名
+            name 'caimuhao' //姓名，可以是中文
+            email 'caimuhao@gmail.com'
+          }
+        }
+        scm {
+          connection gitUrl
+          developerConnection gitUrl
+          url siteUrl
+        }
+      }
+    }
+  }
+}
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+  failOnError false //必须添加以免出错
+  source = android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+artifacts {
+  archives javadocJar
+  archives sourcesJar
+}
+
+//./gradlew --stop; ./gradlew clean bU

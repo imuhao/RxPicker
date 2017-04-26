@@ -1,6 +1,7 @@
 package com.caimuhao.sample;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import com.caimuhao.rxpicker.RxPicker;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import java.util.List;
 
