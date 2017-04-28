@@ -1,6 +1,7 @@
 package com.caimuhao.rxpicker.ui;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +28,7 @@ public class RxPickerActivity extends AppCompatActivity {
     requestPermission();
   }
 
+  @TargetApi(16)
   private void requestPermission() {
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
         != PackageManager.PERMISSION_GRANTED) {
