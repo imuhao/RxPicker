@@ -60,8 +60,7 @@ public class RxPickerManager {
 
   public void display(ImageView imageView, String path, int width, int height) {
     if (imageLoader == null) {
-      throw new NullPointerException(
-          "You must fist of all call 'RxPickerManager.getInstance().init()' to initialize");
+      throw new NullPointerException("You must fist of all call 'RxPicker.init()' to initialize");
     }
     imageLoader.display(imageView, path, width, height);
   }
