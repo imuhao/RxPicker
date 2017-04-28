@@ -15,9 +15,8 @@ import java.util.List;
 public class RxPickerManager {
 
   private PickerConfig config;
-  private static RxPickerManager manager;
-
   private RxPickerImageLoader imageLoader;
+  private static RxPickerManager manager;
 
   public static RxPickerManager getInstance() {
     if (manager == null) {
