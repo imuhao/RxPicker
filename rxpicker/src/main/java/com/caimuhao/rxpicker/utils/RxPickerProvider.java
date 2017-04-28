@@ -7,6 +7,6 @@ import android.support.v4.content.FileProvider;
  * @time 2017/4/25  下午9:38
  * @desc ${TODD}
  */
-public class RxPickerProvider extends FileProvider{
+class RxPickerProvider extends FileProvider {
 
 }
