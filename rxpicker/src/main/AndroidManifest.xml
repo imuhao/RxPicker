@@ -22,7 +22,6 @@
         android:launchMode="singleTop"
         android:theme="@style/RxPicker.AppTheme"/>
 
-
     <provider
         android:name=".utils.RxPickerProvider"
         android:authorities="${applicationId}.provider"
