@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.caimuhao.rxpicker.R;
-import com.caimuhao.rxpicker.RxPickerManager;
+import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.bean.FolderClickEvent;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.utils.RxBus;

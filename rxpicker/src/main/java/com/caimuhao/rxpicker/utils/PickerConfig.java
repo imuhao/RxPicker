@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker;
+package com.caimuhao.rxpicker.utils;
 
 import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
@@ -15,8 +15,8 @@ public class PickerConfig {
   private int maxValue = 9;
   private boolean showCamera = true;
 
-  static final int SINGLE_IMG = 0x001;
-  static final int MULTIPLE_IMG = 0x002;
+  public static final int SINGLE_IMG = 0x001;
+  public static final int MULTIPLE_IMG = 0x002;
   private int mode = SINGLE_IMG;
 
   @IntDef({ SINGLE_IMG, MULTIPLE_IMG }) @Retention(RetentionPolicy.SOURCE) @interface Mode {

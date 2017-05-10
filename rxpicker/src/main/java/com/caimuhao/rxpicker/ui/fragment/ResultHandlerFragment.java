@@ -6,7 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import com.caimuhao.rxpicker.RxPickerManager;
+import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;

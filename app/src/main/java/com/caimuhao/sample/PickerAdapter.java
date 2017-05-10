@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import com.caimuhao.rxpicker.RxPickerManager;
+import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.ViewGroup;
-import com.caimuhao.rxpicker.RxPickerManager;
+import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.utils.DensityUtil;
 import java.util.List;

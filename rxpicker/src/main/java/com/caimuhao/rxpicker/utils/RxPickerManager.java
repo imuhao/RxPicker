@@ -1,10 +1,9 @@
-package com.caimuhao.rxpicker;
+package com.caimuhao.rxpicker.utils;
 
 import android.content.Intent;
 import android.widget.ImageView;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
-import com.caimuhao.rxpicker.utils.RxPickerImageLoader;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class RxPickerManager {
   private RxPickerManager() {
   }
 
-  RxPickerManager setConfig(PickerConfig config) {
+  public RxPickerManager setConfig(PickerConfig config) {
     this.config = config;
     return this;
   }
@@ -41,19 +40,19 @@ public class RxPickerManager {
     return config;
   }
 
-  void init(RxPickerImageLoader imageLoader) {
+  public void init(RxPickerImageLoader imageLoader) {
     this.imageLoader = imageLoader;
   }
 
-  void setMode(int mode) {
+  public void setMode(int mode) {
     config.setMode(mode);
   }
 
-  void showCamera(boolean showCamera) {
+  public void showCamera(boolean showCamera) {
     config.setShowCamera(showCamera);
   }
 
-  void limit(int minValue, int maxValue) {
+  public void limit(int minValue, int maxValue) {
     config.setLimit(minValue, maxValue);
   }
 
