@@ -48,15 +48,13 @@ import java.util.List;
 public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
     implements PickerFragmentContract.View, View.OnClickListener {
 
-  public static final int DEFALUT_SPANCount = 3;
-
+  public static final int DEFALUT_SPAN_COUNT = 3;
   public static final int CAMERA_REQUEST = 0x001;
   private static final int CAMERA_PERMISSION = 0x002;
 
   public static final String MEDIA_RESULT = "media_result";
 
   private TextView title;
-  private Toolbar toolbar;
   private RecyclerView recyclerView;
   private ImageView ivSelectPreview;
   private TextView tvSelectOk;
@@ -94,16 +92,16 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void initToolbar(View view) {
-    toolbar = (Toolbar) view.findViewById(R.id.nav_top_bar);
+    Toolbar toolbar = (Toolbar) view.findViewById(R.id.nav_top_bar);
     final AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
     appCompatActivity.setSupportActionBar(toolbar);
     appCompatActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    appCompatActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         appCompatActivity.onBackPressed();
       }
     });
-    appCompatActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
   }
 
   private void initObservable() {
@@ -145,12 +143,12 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void initRecycler() {
-    GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), DEFALUT_SPANCount);
+    GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), DEFALUT_SPAN_COUNT);
     recyclerView.setLayoutManager(layoutManager);
     final DividerGridItemDecoration decoration = new DividerGridItemDecoration(getActivity());
     Drawable divider = decoration.getDivider();
-    int imageWidth = DensityUtil.getDeviceWidth(getActivity()) / DEFALUT_SPANCount
-        + divider.getIntrinsicWidth() * DEFALUT_SPANCount - 1;
+    int imageWidth = DensityUtil.getDeviceWidth(getActivity()) / DEFALUT_SPAN_COUNT
+        + divider.getIntrinsicWidth() * DEFALUT_SPAN_COUNT - 1;
     adapter = new PickerFragmentAdapter(imageWidth);
     adapter.setCameraClickListener(new CameraClickListener());
     recyclerView.addItemDecoration(decoration);
