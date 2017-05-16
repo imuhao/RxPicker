@@ -15,6 +15,7 @@ public class RxPickerManager {
 
   private PickerConfig config;
   private RxPickerImageLoader imageLoader;
+
   private static RxPickerManager manager;
 
   public static RxPickerManager getInstance() {
@@ -56,7 +57,7 @@ public class RxPickerManager {
     config.setLimit(minValue, maxValue);
   }
 
-  public void display(ImageView imageView, String path, int width, int height) {
+  public  void display(ImageView imageView, String path, int width, int height) {
     if (imageLoader == null) {
       throw new NullPointerException("You must fist of all call 'RxPicker.init()' to initialize");
     }

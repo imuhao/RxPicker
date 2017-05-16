@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-  private Toolbar toolbar;
   private TextView tvSingleImg;
   private TextView tvMultiImg;
 
@@ -27,8 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     toolbar.setTitle("RxPicker");
+
     tvSingleImg = (TextView) findViewById(R.id.btn_single_img);
     tvSingleImg.setOnClickListener(this);
 
