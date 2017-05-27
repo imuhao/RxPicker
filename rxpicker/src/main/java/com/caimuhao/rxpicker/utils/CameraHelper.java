@@ -25,6 +25,7 @@ public class CameraHelper {
   public static void take(Fragment fragment, int requestCode) {
     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
     if (takePictureIntent.resolveActivity(fragment.getActivity().getPackageManager()) != null) {
       takeImageFile = new File(Environment.getExternalStorageDirectory(), "/DCIM/camera/");
       takeImageFile = createFile(takeImageFile, "IMG_", ".jpg");

@@ -8,5 +8,7 @@ import android.widget.ImageView;
  * @desc ${TODD}
  */
 public interface RxPickerImageLoader {
+
   void display(ImageView imageView, String path, int width, int height);
+
 }

@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
 import com.caimuhao.rxpicker.RxPicker;
 import com.caimuhao.rxpicker.bean.ImageItem;
 import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
-import io.reactivex.functions.Consumer;
+
 import java.util.List;
+
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
       });
     } else if (tvMultiImg == v) {
+
       RxPicker.of()
           .single(false)
           .camera(true)
