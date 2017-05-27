@@ -17,9 +17,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.caimuhao.rxpicker.utils.PickerConfig;
+
 import com.caimuhao.rxpicker.R;
-import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.bean.FolderClickEvent;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
@@ -32,13 +31,17 @@ import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
 import com.caimuhao.rxpicker.ui.view.PopWindowManager;
 import com.caimuhao.rxpicker.utils.CameraHelper;
 import com.caimuhao.rxpicker.utils.DensityUtil;
+import com.caimuhao.rxpicker.utils.PickerConfig;
 import com.caimuhao.rxpicker.utils.RxBus;
+import com.caimuhao.rxpicker.utils.RxPickerManager;
 import com.caimuhao.rxpicker.utils.T;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author Smile
@@ -105,6 +108,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void initObservable() {
+
     folderClicksubscribe = RxBus.singleton()
         .toObservable(FolderClickEvent.class)
         .subscribe(new Consumer<FolderClickEvent>() {
@@ -143,12 +147,15 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
   }
 
   private void initRecycler() {
+
     GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), DEFALUT_SPAN_COUNT);
     recyclerView.setLayoutManager(layoutManager);
+
     final DividerGridItemDecoration decoration = new DividerGridItemDecoration(getActivity());
     Drawable divider = decoration.getDivider();
     int imageWidth = DensityUtil.getDeviceWidth(getActivity()) / DEFALUT_SPAN_COUNT
         + divider.getIntrinsicWidth() * DEFALUT_SPAN_COUNT - 1;
+
     adapter = new PickerFragmentAdapter(imageWidth);
     adapter.setCameraClickListener(new CameraClickListener());
     recyclerView.addItemDecoration(decoration);
@@ -159,6 +166,7 @@ public class PickerFragment extends AbstractFragment<PickerFragmentPresenter>
             config.getMaxValue()));
       }
     });
+
     tvSelectOk.setText(
         getString(R.string.select_confim, adapter.getCheckImage().size(), config.getMaxValue()));
   }
