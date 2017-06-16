@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.view;
+package com.caimuhao.rxpicker.widget;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;

@@ -31,6 +31,15 @@ public class RxPicker {
         RxPickerManager.getInstance().setConfig(config);
     }
 
+
+    /**
+     * init RxPicker
+     */
+    public static void init(RxPickerImageLoader imageLoader) {
+        RxPickerManager.getInstance().init(imageLoader);
+    }
+
+
     /**
      * Using the custom config
      */
@@ -84,48 +93,37 @@ public class RxPicker {
         return start(fragment.getFragmentManager());
     }
 
+    /**
+     * start picker from fragment
+     */
     private Observable<List<ImageItem>> start(FragmentManager fragmentManager) {
-
-        ResultHandlerFragment fragment = (ResultHandlerFragment) fragmentManager
-                .findFragmentByTag(ResultHandlerFragment.class.getSimpleName());
-
+        ResultHandlerFragment fragment = (ResultHandlerFragment) fragmentManager.findFragmentByTag(ResultHandlerFragment.class.getSimpleName());
         if (fragment == null) {
-
             fragment = ResultHandlerFragment.newInstance();
-
-            fragmentManager
-                    .beginTransaction()
-                    .add(fragment, fragment.getClass().getSimpleName())
-                    .commit();
-
+            fragmentManager.beginTransaction().add(fragment, fragment.getClass().getSimpleName()).commit();
         } else if (fragment.isDetached()) {
-
-            fragmentManager.beginTransaction()
-                    .attach(fragment)
-                    .commit();
+            fragmentManager.beginTransaction().attach(fragment).commit();
         }
-
-        final ResultHandlerFragment finalFragment = fragment;
-
-        return finalFragment.getAttachSubject()
-                .filter(new Predicate<Boolean>() {
-                    @Override
-                    public boolean test(@NonNull Boolean aBoolean) throws Exception {
-                        return aBoolean;
-                    }})
-                .flatMap(new Function<Boolean, ObservableSource<List<ImageItem>>>() {
-                    @Override
-                    public ObservableSource<List<ImageItem>> apply(@NonNull Boolean aBoolean) throws Exception {
-
-                        Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
-                        finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
-                        return finalFragment.getResultSubject();
-
-                    } })
-                .take(1);
+        return getListItem(fragment);
     }
 
-    public static void init(RxPickerImageLoader imageLoader) {
-        RxPickerManager.getInstance().init(imageLoader);
+
+    private Observable<List<ImageItem>> getListItem(final ResultHandlerFragment finalFragment) {
+        return finalFragment.getAttachSubject().filter(new Predicate<Boolean>() {
+            @Override
+            public boolean test(@NonNull Boolean aBoolean) throws Exception {
+                return aBoolean;
+            }
+        }).flatMap(new Function<Boolean, ObservableSource<List<ImageItem>>>() {
+            @Override
+            public ObservableSource<List<ImageItem>> apply(@NonNull Boolean aBoolean) throws Exception {
+                Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
+                finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
+                return finalFragment.getResultSubject();
+
+            }
+        }).take(1);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.view;
+package com.caimuhao.rxpicker.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

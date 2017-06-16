@@ -2,8 +2,8 @@ package com.caimuhao.rxpicker.ui.fragment.mvp;
 
 import android.content.Context;
 import com.caimuhao.rxpicker.bean.ImageFolder;
-import com.caimuhao.rxpicker.ui.base.BasePresenter;
-import com.caimuhao.rxpicker.ui.base.BaseView;
+import com.caimuhao.rxpicker.base.BasePresenter;
+import com.caimuhao.rxpicker.base.BaseView;
 import java.util.List;
 
 /**

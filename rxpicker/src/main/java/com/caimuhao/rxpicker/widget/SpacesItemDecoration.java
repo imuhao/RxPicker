@@ -1,5 +1,5 @@
 
-package com.caimuhao.rxpicker.ui.view;
+package com.caimuhao.rxpicker.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;

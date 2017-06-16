@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.caimuhao.rxpicker.RxPicker;
 import com.caimuhao.rxpicker.bean.ImageItem;
-import com.caimuhao.rxpicker.ui.view.DividerGridItemDecoration;
+import com.caimuhao.rxpicker.widget.DividerGridItemDecoration;
 
 import java.util.List;
 
@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
       });
     } else if (tvMultiImg == v) {
-
       RxPicker.of()
           .single(false)
           .camera(true)

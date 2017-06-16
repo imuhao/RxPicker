@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.base;
+package com.caimuhao.rxpicker.base;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
