@@ -19,50 +19,49 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-  private TextView tvSingleImg;
-  private TextView tvMultiImg;
+    private TextView tvSingleImg;
+    private TextView tvMultiImg;
 
-  private RecyclerView recyclerView;
-  private PickerAdapter adapter;
+    private RecyclerView recyclerView;
+    private PickerAdapter adapter;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    toolbar.setTitle("RxPicker");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("RxPicker");
 
-    tvSingleImg = (TextView) findViewById(R.id.btn_single_img);
-    tvSingleImg.setOnClickListener(this);
+        tvSingleImg = (TextView) findViewById(R.id.btn_single_img);
+        tvSingleImg.setOnClickListener(this);
 
-    tvMultiImg = (TextView) findViewById(R.id.btn_multi_img);
-    tvMultiImg.setOnClickListener(this);
+        tvMultiImg = (TextView) findViewById(R.id.btn_multi_img);
+        tvMultiImg.setOnClickListener(this);
 
-    adapter = new PickerAdapter();
-    recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-    recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-    recyclerView.addItemDecoration(new DividerGridItemDecoration(this));
-    recyclerView.setAdapter(adapter);
-  }
-
-  @Override public void onClick(View v) {
-    if (tvSingleImg == v) {
-      RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
-        @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
-          adapter.setData(imageItems);
-        }
-      });
-    } else if (tvMultiImg == v) {
-      RxPicker.of()
-          .single(false)
-          .camera(true)
-          .limit(3, 9)
-          .start(this)
-          .subscribe(new Consumer<List<ImageItem>>() {
-            @Override public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
-              adapter.setData(imageItems);
-            }
-          });
+        adapter = new PickerAdapter();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.addItemDecoration(new DividerGridItemDecoration(this));
+        recyclerView.setAdapter(adapter);
     }
-  }
+
+    @Override
+    public void onClick(View v) {
+        if (tvSingleImg == v) {
+            RxPicker.of().start(this).subscribe(new Consumer<List<ImageItem>>() {
+                @Override
+                public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
+                    adapter.setData(imageItems);
+                }
+            });
+        } else if (tvMultiImg == v) {
+            RxPicker.of().single(false).camera(true).limit(3, 9).start(this).subscribe(new Consumer<List<ImageItem>>() {
+                @Override
+                public void accept(@NonNull List<ImageItem> imageItems) throws Exception {
+                    adapter.setData(imageItems);
+                }
+            });
+        }
+    }
 }

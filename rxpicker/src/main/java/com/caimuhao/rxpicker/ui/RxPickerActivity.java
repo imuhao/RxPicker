@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+
 import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
 import com.caimuhao.rxpicker.utils.T;
@@ -20,47 +21,43 @@ import com.caimuhao.rxpicker.utils.T;
  */
 public class RxPickerActivity extends AppCompatActivity {
 
-  private static final int READ_STORAGE_PERMISSION = 0;
+    private static final int READ_STORAGE_PERMISSION = 0;
 
-  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_picker);
-    requestPermission();
-  }
-
-  @TargetApi(16)
-  private void requestPermission() {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED) {
-      ActivityCompat.requestPermissions(RxPickerActivity.this, new String[] {
-          Manifest.permission.READ_EXTERNAL_STORAGE
-      }, READ_STORAGE_PERMISSION);
-    } else {
-      setupFragment();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_picker);
+        requestPermission();
     }
-  }
 
-  @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-      @NonNull int[] grantResults) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    if (requestCode == READ_STORAGE_PERMISSION) {
-      if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-        setupFragment();
-      } else {
-        T.show(RxPickerActivity.this, getString(R.string.permissions_error));
-        finish();
-      }
+    @TargetApi(16)
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(RxPickerActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_STORAGE_PERMISSION);
+        } else {
+            setupFragment();
+        }
     }
-  }
 
-  private void setupFragment() {
-    PickerFragment fragment = (PickerFragment) getFragmentManager().findFragmentByTag(
-        PickerFragment.class.getSimpleName());
-    if (fragment == null) {
-      fragment = PickerFragment.newInstance();
-      getFragmentManager().beginTransaction()
-          .replace(R.id.fl_container, fragment, PickerFragment.class.getSimpleName())
-          .commitAllowingStateLoss();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == READ_STORAGE_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                setupFragment();
+            } else {
+                T.show(RxPickerActivity.this, getString(R.string.permissions_error));
+                finish();
+            }
+        }
     }
-  }
+
+    private void setupFragment() {
+        String tag = PickerFragment.class.getSimpleName();
+        PickerFragment fragment = (PickerFragment) getFragmentManager().findFragmentByTag(tag);
+        if (fragment == null) {
+            fragment = PickerFragment.newInstance();
+        }
+        getFragmentManager().beginTransaction().replace(R.id.fl_container, fragment, tag).commitAllowingStateLoss();
+    }
 }
