@@ -19,7 +19,7 @@ The ImageSelect tool based on RxJava.
 1.Add gradle:
 
 ```
-compile 'com.caimuhao:rxpicker:1.1.4'
+compile 'com.caimuhao:rxpicker:1.1.5'
 ```
 
 2.Extends `RxPickerImageLoader` create custom  ImageLoader
