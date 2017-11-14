@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
@@ -54,10 +55,10 @@ public class RxPickerActivity extends AppCompatActivity {
 
     private void setupFragment() {
         String tag = PickerFragment.class.getSimpleName();
-        PickerFragment fragment = (PickerFragment) getFragmentManager().findFragmentByTag(tag);
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
         if (fragment == null) {
             fragment = PickerFragment.newInstance();
         }
-        getFragmentManager().beginTransaction().replace(R.id.fl_container, fragment, tag).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, fragment, tag).commitAllowingStateLoss();
     }
 }
