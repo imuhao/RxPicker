@@ -7,7 +7,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 def siteUrl = 'https://github.com/imuhao/RxPicker'
 def gitUrl = 'https://github.com/imuhao/RxPicker.git'
 
-version_name = "1.1.5"
+versionName = "1.1.5"
 group = "com.caimuhao"
 
 bintray {
@@ -23,10 +23,10 @@ bintray {
     publish = true // 是否是公开项目。
 
     version {
-      name = version_name
+      name = versionName
       desc = 'The ImageSelect tool based on RxJava.'
       released = new Date()
-      vcsTag = 'v' + version_name
+      vcsTag = 'v' + versionName
       attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
     }
   }
