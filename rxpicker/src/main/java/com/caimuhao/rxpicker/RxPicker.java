@@ -113,13 +113,13 @@ public class RxPicker {
   }
 
   private Observable<List<ImageItem>> getListItem(final ResultHandlerFragment finalFragment) {
+
     return finalFragment.getAttachSubject().filter(new Predicate<Boolean>() {
-      @Override public boolean test(@NonNull Boolean aBoolean) throws Exception {
+      @Override public boolean test(@NonNull Boolean aBoolean) {
         return aBoolean;
       }
     }).flatMap(new Function<Boolean, ObservableSource<List<ImageItem>>>() {
-      @Override public ObservableSource<List<ImageItem>> apply(@NonNull Boolean aBoolean)
-          throws Exception {
+      @Override public ObservableSource<List<ImageItem>> apply(@NonNull Boolean aBoolean) {
         Intent intent = new Intent(finalFragment.getActivity(), RxPickerActivity.class);
         finalFragment.startActivityForResult(intent, ResultHandlerFragment.REQUEST_CODE);
         return finalFragment.getResultSubject();

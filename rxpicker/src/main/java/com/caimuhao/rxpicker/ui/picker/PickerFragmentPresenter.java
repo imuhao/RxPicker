@@ -99,8 +99,7 @@ public class PickerFragmentPresenter extends PickerFragmentContract.Presenter {
   }
 
   @Override public void loadAllImage(final Context context) {
-    loadAllFolder(context)
-        .subscribeOn(Schedulers.io())
+    loadAllFolder(context).subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe(new Consumer<Disposable>() {
           @Override public void accept(@NonNull Disposable disposable) throws Exception {

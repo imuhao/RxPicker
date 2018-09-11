@@ -38,7 +38,7 @@ public class PreviewActivity extends AppCompatActivity {
     setContentView(R.layout.activity_preview);
     handleData();
     setupToolbar();
-    vpPreview = (ViewPager) findViewById(R.id.vp_preview);
+    vpPreview =  findViewById(R.id.vp_preview);
     vpAdapter = new PreviewAdapter(data);
     vpPreview.setAdapter(vpAdapter);
     vpPreview.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -53,7 +53,7 @@ public class PreviewActivity extends AppCompatActivity {
   }
 
   private void setupToolbar() {
-    toolbar = (Toolbar) findViewById(R.id.nav_top_bar);
+    toolbar =  findViewById(R.id.nav_top_bar);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -29,13 +29,13 @@ public abstract class AbstractFragment<P extends BasePresenter> extends Fragment
     View view = inflater.inflate(getLayoutId(), container, false);
     presenter = ClassUtils.getT(this, 0);
     presenter.attachModelView(this);
-    initView(view);
+    init(view);
     return view;
   }
 
   protected abstract int getLayoutId();
 
-  protected abstract void initView(View view);
+  protected abstract void init(View view);
 
   public void showWaitDialog() {
     if (!Thread.currentThread().getName().equals("main")) {
