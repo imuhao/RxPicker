@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui;
+package com.caimuhao.rxpicker.ui.picker;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.caimuhao.rxpicker.R;
-import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
 import com.caimuhao.rxpicker.utils.T;
 
 /**

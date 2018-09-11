@@ -3,7 +3,7 @@ package com.caimuhao.rxpicker.utils;
 import android.content.Intent;
 import android.widget.ImageView;
 import com.caimuhao.rxpicker.bean.ImageItem;
-import com.caimuhao.rxpicker.ui.fragment.PickerFragment;
+import com.caimuhao.rxpicker.ui.picker.PickerFragment;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui;
+package com.caimuhao.rxpicker.ui.preview;
 
 import android.content.Context;
 import android.content.Intent;

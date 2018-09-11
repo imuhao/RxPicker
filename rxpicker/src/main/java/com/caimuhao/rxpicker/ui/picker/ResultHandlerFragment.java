@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.fragment;
+package com.caimuhao.rxpicker.ui.picker;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.fragment;
+package com.caimuhao.rxpicker.ui.picker;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -22,11 +22,9 @@ import com.caimuhao.rxpicker.R;
 import com.caimuhao.rxpicker.bean.FolderClickEvent;
 import com.caimuhao.rxpicker.bean.ImageFolder;
 import com.caimuhao.rxpicker.bean.ImageItem;
-import com.caimuhao.rxpicker.ui.PreviewActivity;
+import com.caimuhao.rxpicker.ui.preview.PreviewActivity;
 import com.caimuhao.rxpicker.ui.adapter.PickerFragmentAdapter;
 import com.caimuhao.rxpicker.base.AbstractFragment;
-import com.caimuhao.rxpicker.ui.fragment.mvp.PickerFragmentContract;
-import com.caimuhao.rxpicker.ui.fragment.mvp.PickerFragmentPresenter;
 import com.caimuhao.rxpicker.widget.DividerGridItemDecoration;
 import com.caimuhao.rxpicker.widget.PopWindowManager;
 import com.caimuhao.rxpicker.utils.CameraHelper;

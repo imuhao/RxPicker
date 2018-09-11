@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.fragment.mvp;
+package com.caimuhao.rxpicker.ui.picker;
 
 import android.content.Context;
 import android.database.Cursor;

@@ -11,12 +11,12 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".ui.RxPickerActivity"
+            android:name=".ui.picker.RxPickerActivity"
             android:launchMode="singleTop"
             android:theme="@style/RxPicker.AppTheme" />
 
         <activity
-            android:name=".ui.PreviewActivity"
+            android:name=".ui.preview.PreviewActivity"
             android:launchMode="singleTop"
             android:theme="@style/RxPicker.AppTheme" />
 

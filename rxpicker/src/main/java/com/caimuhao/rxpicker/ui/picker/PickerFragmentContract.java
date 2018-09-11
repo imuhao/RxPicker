@@ -1,4 +1,4 @@
-package com.caimuhao.rxpicker.ui.fragment.mvp;
+package com.caimuhao.rxpicker.ui.picker;
 
 import android.content.Context;
 import com.caimuhao.rxpicker.bean.ImageFolder;
@@ -17,7 +17,7 @@ public interface PickerFragmentContract {
     void showAllImage(List<ImageFolder> datas);
   }
 
-  public abstract class Presenter extends BasePresenter<View> {
+  abstract class Presenter extends BasePresenter<View> {
     public abstract void loadAllImage(Context context);
   }
 }
